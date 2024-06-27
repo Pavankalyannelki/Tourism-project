@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<!-- codingmanish - www.codingmanish.in -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gootyfort</title>
+    {% load static%}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #f2f2f2;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 5;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            background: #fff;
+        }
+
+        .navbar {
+            display: flex;
+            padding: 0 10px;
+            max-width: 1200px;
+            width: 100%;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .navbar input#menu-toggler {
+            display: none;
+        }
+
+        .navbar #hamburger-btn {
+            cursor: pointer;
+            display: none;
+        }
+
+        .navbar .all-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .all-links li {
+            position: relative;
+            list-style: none;
+        }
+
+        .navbar .logo a {
+            display: flex;
+            align-items: center;
+            margin-left: 0;
+        }
+
+        header a {
+            margin-left: 40px;
+            text-decoration: none;
+            color: #222;
+            height: 100%;
+            padding: 20px 0;
+            display: inline-block;
+        }
+
+        header a:hover {
+            color: #38e016;
+        }
+
+        .homepage {
+            height: 100vh;
+            width: 100%;
+            position: relative;
+            
+            background-position: center 65%;
+            background-size: cover;
+        }
+
+        .homepage::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+
+        section {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            padding: 80px 0 0;
+        }
+
+        section h2 {
+            font-size: 2rem;
+        }
+
+        section > p {
+            text-align: center;
+        }
+
+        section .cards {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin-top: 50px;
+            padding: 0 10px;
+            justify-content: space-between;
+        }
+
+        section.about {
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+
+        .about .company-info {
+            margin-top: 30px;
+        }
+
+        .about h3 {
+            margin: 30px 0 10px;
+        }
+
+        .about .team {
+            text-align: left;
+            width: 100%;
+        }
+
+        .about .team ul {
+            padding-left: 20px;
+        }
+
+        section .cards .card {
+            background: #fff;
+            padding: 40px 15px;
+            list-style: none;
+            border-radius: 5px;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.04);
+            margin-bottom: 40px;
+            width: calc(100% / 3 - 30px);
+            text-align: center;
+        }
+
+        .portfolio .cards .card {
+            padding: 0 0 20px;
+        }
+
+        .portfolio .card img {
+            width: 100%;
+            padding-bottom: 10px;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            border-radius: 7px;
+        }
+
+        .cards .card p {
+            padding: 0 15px;
+            margin-top: 5px;
+            font-size: small;
+        }
+
+
+        @media screen and (max-width: 860px) {
+            .navbar .all-links {
+                position: fixed;
+                left: -100%;
+                width: 300px;
+                display: block;
+                height: 100vh;
+                top: 75px;
+                background: #fff;
+                transition: left 0.3s ease;
+            }
+
+            .navbar #menu-toggler:checked~.all-links {
+                left: 0;
+            }
+
+            .navbar .all-links li {
+                font-size: 18px;
+            }
+
+            .navbar #hamburger-btn {
+                display: block;
+            }
+
+            section > p {
+                text-align: center;
+            }
+
+            section .cards .card {
+                width: calc(100% / 2 - 15px);
+                margin-bottom: 30px;
+            }
+        }
+
+        @media screen and (max-width: 560px) {
+            section .cards .card {
+                width: 100%;
+                margin-bottom: 30px;
+            }
+        }
+
+        .image-container {
+            position: relative;
+            text-align: center;
+            color: white;
+        }
+
+        .image-container img {
+            width: 100%; 
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav class="navbar">
+        <h2 class="logo"><a href="#">Travel</a></h2>
+        <input type="checkbox" id="menu-toggler">
+        <label for="menu-toggler" id="hamburger-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="24px" height="24px">
+                <path d="M0 0h24v24H0z" fill="none"/>
+                <path d="M3 18h18v-2H3v2zm0-5h18V11H3v2zm0-7v2h18V6H3z"/>
+            </svg>
+        </label>
+        <ul class="all-links">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'destinations' %}">Destinations</a></li>
+            <li><a href="{% url 'categories' %}">Categories</a></li>
+            <li><a href="{% url 'gallerypage' %}">Gallery</a></li>
+            <li><a href="{% url 'contactus' %}">Contact Us</a></li>
+            <li style="margin-right: 20px;"></li>
+           <li ><select name="" id="dropdown1">
+            <option value="#">Bookings</option>
+            <option value="{% url 'hotelbooking' %}">Hotel 1</option>
+            <option value="{% url 'hotelbooking' %}">Hotel 2</option>
+        </select>
+        
+            </li> 
+            <a href="{% url 'login' %}"><i class="fa-solid fa-right-from-bracket" title="sign out"></i></a>
+        </ul>
+    </nav>
+</header>
+
+<section class="homepage" id="home">
+    <img src="{% static 'images/gootyfort_destinations.jpeg' %}" alt="Description of the image" style=" height: 100vh; width: 100%;">
+</section>
+<section class="portfolio" id="portfolio">
+    <h2>Gooty Fort</h2>
+    <p>Detailed information about the place.</p>
+    <ul class="cards">
+        <li class="card">
+            <img src="https://i.pinimg.com/originals/47/29/43/4729430910b179ffc16e3a4147692e5b.jpg" alt="img">
+            <h3>ABOUT</h3>
+            <p>The fort at Gooty (pronounced 'Gutti') is one of the most impressive citadels in Andhra Pradesh. Even from a distance,it looks spectacular-like a goliath tortoise resting on the ground.</p>
+        </li>
+        <li class="card">
+            <img src="https://i.pinimg.com/originals/3a/00/1c/3a001c439269f2b9e6e08a4f49ba80c8.jpg" alt="img">
+            <h3>OVERVIEW</h3>
+            <p>There is a large fortification around the foothills, inside which are thriving settlements and a colonial era church. The graveyard is located at the base of the hill. Considering how most colonial cemeteries have fallen to the ravages of time, the one at Gooty is remarkably well-preserved.In fact, you can still read the mournful epitaphs etched on the tombstones.
+            <span class="moreText" style="display: none;">
+            Most of the graves are modest vaults,though some of the more ornate ones have obelisks and small pavilions.One of the most famous graves is that of Sir Thomas Munro(1761-1827) governor of Madras, who died of cholera at Pattikonda, 30km away. 
+            </p></span><a href="#" class="readMoreLink">Read more</a><a href="#" class="readLessLink" style="display: none;">Read less</a></p>
+
+            </li>
+        <li class="card">
+            <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/4d/b6/ac/gooty-fort.jpg?w=1200&h=-1&s=1 " alt="img">
+            <h3>DETAILED INFORMATION</h3>
+            <h4>How to reach</h4>
+            <p>flight:Bangalore is the nearest airport to Gooty, which is 237 kms away. </p>
+
+            <p>Train:Gooty is one of the major rail junction, there are regular trains from other major cities. </p>
+                
+            <p>Buses:Gooty is well connected to other major cities via regular buses. </p>
+            <span class="moreText" style="display: none;">
+                <h4>Best time to visit</h4>
+                <p>"Gooty Fort is a popular tourist site in Andhra Pradesh and once can visit the place throughout the year".
+
+                </p></span><a href="#" class="readMoreLink">Read more</a><a href="#" class="readLessLink" style="display: none;">Read less</a></p>
+        </li>
+    </ul>
+</section>
+
+<div class="image-container">
+    <p><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3851.8083265833134!2d77.64793867509367!3d15.113888964304028!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bb6942b21d09493%3A0xcb8374559d8acfc4!2sGooty%20Fort!5e0!3m2!1sen!2sin!4v1701190951023!5m2!1sen!2sin" width="800" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></p>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var moreTexts = document.querySelectorAll(".moreText");
+        var readMoreLinks = document.querySelectorAll(".readMoreLink");
+        var readLessLinks = document.querySelectorAll(".readLessLink");
+
+        readMoreLinks.forEach(function(readMoreLink, index) {
+            readMoreLink.addEventListener("click", function(event) {
+                event.preventDefault();
+                moreTexts[index].style.display = "inline"; // or "block" depending on your design
+                readMoreLinks[index].style.display = "none";
+                readLessLinks[index].style.display = "inline";
+            });
+        });
+
+        readLessLinks.forEach(function(readLessLink, index) {
+            readLessLink.addEventListener("click", function(event) {
+                event.preventDefault();
+                moreTexts[index].style.display = "none";
+                readMoreLinks[index].style.display = "inline";
+                readLessLinks[index].style.display = "none";
+            });
+        });
+    });
+
+// js for hotel booking
+
+    function redirectToPage(dropdownId) {
+    var selectedOption = document.getElementById(dropdownId).value;
+    if (selectedOption !== "#") {
+      window.location.href = selectedOption;
+    }
+  }
+
+  document.getElementById("dropdown1").addEventListener("change", function() {
+    redirectToPage("dropdown1");
+  });
+</script>
+</body>
+</html>

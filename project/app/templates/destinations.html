@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   {% load static %}
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+   <title>destinations</title>
+   <style>
+      /*=============== GOOGLE FONTS ===============*/
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+
+
+      /*=============== VARIABLES CSS ===============*/
+      :root {
+         /*========== Font and typography ==========*/
+         /*.5rem = 8px | 1rem = 16px ...*/
+         --body-font: "Poppins", sans-serif;
+         --h2-font-size: 1.25rem;
+         --small-font-size: .813rem;
+      }
+
+      /*========== Responsive typography ==========*/
+      @media screen and (min-width: 1120px) {
+         :root {
+            --h2-font-size: 1.5rem;
+            --small-font-size: .875rem;
+         }
+      }
+
+      /*=============== BASE ===============*/
+      * {
+         box-sizing: border-box;
+         padding: 0;
+         margin: 0;
+      }
+
+      body{
+         font-family: poppins;
+         background-color: white;
+         color: black;
+         
+      }
+
+      img {
+         display: block;
+         max-width: 100%;
+         height: auto;
+      }
+
+      /*=============== CARD ===============*/
+      .container {
+         position: relative;
+         display: grid;
+         place-items: center;
+         margin-inline: 9rem;
+         padding-block: 5rem;
+         
+         
+      }
+
+      .card__container {
+         display: grid;
+         row-gap: 3.8rem;
+         position: relative;
+         border-radius: 15px;
+         
+         
+      }
+
+      .card__article {
+         position: relative;
+         overflow: hidden;
+         border-radius: 1.5rem;
+         box-shadow: 2px 2px 20px black;
+         text-align:center;
+      }
+
+      .card__img {
+         width: 200px;
+         border-radius: 1.5rem;
+         height: 450px;
+      }
+
+      .card__img {
+         transition:transform 0.2s;
+      }
+
+      .card__data{
+         height:0;
+         width: 100%;
+         background: linear-gradient(transparent,black 93%);
+         border-radius: 1.5rem;
+         position: absolute;
+         left: 0;
+         bottom: 0;
+         overflow: hidden;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         flex-direction: column;
+         padding: 0 30px;
+         text-align: center;
+         font-size: 14px;
+         transition:height 0.5s;
+      }
+
+      .card__data h2{
+         font-weight:900;
+         text-transform: uppercase;
+         margin-bottom: 8px;
+         margin-top: 100%;
+         font-family:"Baskerville Old Face";
+         font-size:20px;
+         color:white;
+      }
+      
+      .card__data p{
+         color:white;
+         font-family: "Book Antiqua";
+         margin-bottom: 1px;
+         font-size: 13px;
+         text-align:center;
+      }
+
+      .card__data a{
+         margin-top: 2px;
+         color:#262626;
+         text-decoration: none;
+         font-size: 14px;
+         background:#fff;
+         border-radius: 50px;
+         text-align: center;
+         padding:5px 15px;
+      }
+
+      .card__article img{
+         transform: scale(1.2);
+      }
+
+      .card__article .card__data{
+         height:100%;
+      }
+
+      button{
+         margin-top: 20px;
+         margin-bottom: 10px;
+         background-color: white;
+         border: 1px solid black;
+         border-radius: 81px;
+         padding:8px;
+       }
+      button:hover{
+         background-color: rgb(23, 125, 52);
+         color: white;
+         transition: .5s;
+         cursor: pointer;
+       }
+/* 
+       a{
+         margin-top: 20px;
+         margin-bottom: 10px;
+         background-color: white;
+         border: 1px solid black;
+         border-radius: 81px;
+         padding:8px;
+       }
+      a:hover{
+         background-color: rgb(23, 125, 52);
+         color: white;
+         transition: .5s;
+         cursor: pointer;
+       } */
+
+      /* Card animation */
+      @keyframes show-data {
+         50% {
+            transform: translateY(-10rem);
+         }
+         100% {
+            transform: translateY(-7rem);
+         }
+      }
+            
+      @keyframes remove-overflow {
+         to {
+            overflow: initial;
+         }
+      }
+
+      @keyframes remove-data {
+         0% {
+            transform: translateY(-7rem);
+         }
+         50% {
+            transform: translateY(-10rem);
+         }
+         100% {
+            transform: translateY(.5rem);
+         }
+      }
+
+      @keyframes show-overflow {
+         0% {
+            overflow: initial;
+            pointer-events: none;
+         }
+         50% {
+            overflow: hidden;
+         }
+      }
+
+      /*=============== BREAKPOINTS ===============*/
+      /* For small devices */
+      @media screen and (max-width: 340px) {
+         .container {
+            margin-inline: 1rem;
+         }
+
+
+         .card__data {
+            width: 250px;
+            padding: 1rem;
+         }
+      }
+
+      /* For medium devices */
+      @media screen and (min-width: 768px) {
+         .card__container {
+            grid-template-columns: repeat(2, 1fr);
+            
+            column-gap:2.5rem;
+         }
+      }
+
+      /* For large devices */
+      @media screen and (min-width: 1120px) {
+         .container {
+            height: 160vh;
+         }
+
+         .card__container {
+            grid-template-columns: repeat(4, 1fr);
+            
+            
+         }
+         .card__img {
+            width: 500px;
+         }
+         .card__data {
+            width: 270px;
+            text-align: center;
+            padding-inline:1.5rem;
+         }
+      }
+
+      
+      
+      header{
+         z-index: 999;
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         padding: 15px 200px;
+         transition: 0.5s ease;
+         background-color: black;
+      }
+
+      header .brand{
+         color: white; 
+         font-size: 1.5em;
+         font-weight: 700;
+         text-transform: uppercase;
+         text-decoration: none;
+      }
+
+      header .navigation{
+         position: relative; 
+      }
+
+      header .navigation .navigation-items a{
+         position: relative;
+         color: white;
+         font-size: 1em;
+         font-weight: 500;
+         text-decoration: none;
+         margin-left: 30px;
+         transition: 0.3s ease;
+      }
+
+      header .navigation .navigation-items a:before{
+         content: '';
+         position: absolute;
+         background: #fff;
+         width:0px;
+         height: 3px;
+         bottom:0;
+         left:0;
+      }
+
+      header .navigation .navigation-items a:hover:before{
+         width:100%;
+      }
+
+      @media (max-width: 1040px){
+         header{
+            padding: 12px 20px;
+         }
+         
+         header .navigation{
+            display:none;
+         }
+
+         header .navigation.active{
+            position: fixed;
+            width: 100%;
+            height:100vh;
+            top:0;
+            left: 0;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(255, 1, 1, 0.5);
+         }
+      header .navigation .navigation-items a{
+      
+         color: #222;
+         font-size: 1.2em;
+         font-weight: 500;
+         margin:20px;
+      }
+      header .navigation .navigation-items a:before{
+         background: #222;
+         height:5px;
+      }
+      header .navigation.active .navigation-items{
+      
+         background: #222;
+         width: 600px;
+         max-width: 600px;;
+         margin:20px;
+         padding:40px;
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         border-radius: 5px;
+         box-shadow: 0 5px 25px rgb(1 1 1 / 20%);
+      }
+      .menu-btn{
+         color: white;
+         background-size: 30px ;
+         background-position: center;
+         width:40px;
+         height:40px;
+         cursor: pointer;
+         transition: 0.3s ease;
+      }
+
+      .menu-btn.active{
+         z-index: 999;
+         
+         background-size: 25px;
+         background-position: center;
+         transition: 0.3s ease;
+      }
+      }
+   </style>
+</head>
+<body>
+    <header>
+        <a href="#" class="brand">Travel</a>
+        <div class="menu-btn">
+     
+        </div>
+        <div class="navigation">
+           <div class="navigation-items">
+              <a href="{% url 'home' %}">Home</a>
+              <!-- <a href="#">Destinations</a> -->
+              <a href="{% url 'categories' %}">Categories</a>
+              <a href="{% url 'gallerypage' %}">Gallery</a>
+              <a href="{% url 'contactus' %}">Contact Us</a>
+              <a href="#"><i class="fa-solid fa-right-from-bracket" title="sign out"></i></a>
+           </div>
+        </div>
+     </header>
+  
+     <h1 style="text-align: center; position: relative; top:90px; color: #222;">KRISHNA</h1>
+  <!--1st container-->
+     <div class="container" style="position: relative; top:35px">
+        <div class="card__container">
+           <article class="card__article">
+              <img src="{% static 'images/vijayawada_destinations.jpg'%}" alt="image" class="card__img">
+              <div class="card__data">
+                 <h2>vijayawada</h2>
+                 <p class="card__title">Vijayawada known as Bezawad,it is second largest city in AP.It is on the banks of Krishna River</p>
+                 <!-- <button>Read More</button> -->
+                 <a href="{% url 'vijayawada' %}" class="card__button">Read More</a>
+
+              </div>
+           </article>
+  
+           <article class="card__article">
+              <img src="{% static 'images/gandhihill_destinations.webp'%}" alt="image" class="card__img">
+              <div class="card__data">
+                 <h2>gandhi  hill</h2>
+                 <p>It is the first Gandhi memorial in India on a hillock,Situated at a height of 500 ft.This Gandhi memorial with seven stupas</p>
+                 <button>Read More</button>
+              </div>
+           </article>
+  
+           <article class="card__article">
+              <img src="{% static 'images/kuchipudi_destinations.jpg'%}" alt="image" class="card__img">
+              <div class="card__data">
+                 <h2 class="card__title">kuchipudi</h2>
+                 <p>A small village in the Krishna district is where Kuchipudi a famous Indian Classical dance form originated</p>
+                 <!-- <button>Read More</button> -->
+              </div>
+           </article>
+  
+           <article class="card__article">
+              <img src="{% static 'images/prakasambarrage_destinations.jpg'%}" alt="image" class="card__img">
+              <div class="card__data">
+                 <h2 class="card__title">prakasam  barrage</h2>
+                 <p>The Barrage provides views of the lake. It has become a tourist attraction of Vijayawada</p>
+                 <button>Read More</button>
+              </div>
+           </article>
+  
+           <article class="card__article">
+              <img src="{% static 'images/kanakadurgatemple_destinations.jpg'%}" alt="image" class="card__img">
+              <div class="card__data">
+                 <h2 class="card__title" style="font-size:19px;">kanakadurga  temple</h2>
+                 <p>This temple is dedicated to Goddess Durga in Vijayawada,it is perched on top of the Indrakeeladri Hill</p>
+                 <button>Read More</button>
+              </div>
+           </article>
+  
+           <article class="card__article">
+              <img src="{% static 'images/machalipatnam_destinations.jpg'%}" alt="image" class="card__img">
+              <div class="card__data">
+                 <h2 class="card__title">machalipatnam</h2>
+                 <p>Machilipatnam Port is a greenfield deep sea port on the coast of Bay of Bengal.It is located at Machilipatnam</p>
+                 <button>Read More</button>
+              </div>
+           </article>
+  
+           <article class="card__article">
+              <img src="{% static 'images/kondapalli1_destinations.jpg'%}" alt="image" class="card__img">
+              <div class="card__data">
+                 <h2 class="card__title">kondapalli</h2>
+                 <p>A small village on the Hyderabad-Vijayawada Highway, Kondapalli is famous for wooden toys</p>
+                 <button>Read More</button>
+              </div>
+           </article>
+  
+           <article class="card__article">
+              <img src="{% static 'images/bhavaniislands_destinations.jpg'%}" alt="image" class="card__img">
+              <div class="card__data">
+                 <h2 class="card__title">bhavani  islands</h2>
+                 <p>Bhavani Island situated in the midst of the Krishna River. It is considered one of the largest river islands in India</p>
+                 <button>Read More</button>
+              </div>
+           </article>
+        </div>
+     </div>
+  
+  <!--2nd-->
+  
+     <h1 style="text-align: center; position: relative; top:20px; color: #222;">EAST GODAVARI</h1>
+  
+     <div class="container" style="position: relative; top:5px">
+        <div class="card__container">
+           <article class="card__article">
+              <img src="{% static 'images/coringa_destinations.jpg'%}" alt="image" class="card__img">
+              <div class="card__data">
+                 <h2 class="card__title" style="font-size:18px;">coringa wildlife sanctuary</h2>
+                 <p>It is an estuary situated near Kakinada,3rd largest stretch of mangrove forests in India</p>
+                 <a href="{% url 'coringa' %}" class="card__button">Read More</a>
+              </div>
+           </article>
+  
+           <article class="card__article">
+              <img src="{% static 'images/papikondalu_destinations.jpg'%}" alt="image" class="card__img">
+              <div class="card__data">
+                 <h2 class="card__title">papikondalu</h2>
+                 <p>Papikondalu is a lovely place whose scenery resembles the scenery of Kashmir,waterfalls at Munivaatam</p>
+                 <button>Read More</button>
+              </div>
+           </article>
+  
+           <article class="card__article">
+              <img src="{% static 'images/annavaram_destinations.jpg'%}" alt="image" class="card__img">
+              <div class="card__data">
+                 <h2 class="card__title">Annavaram</h2>
+                 <p>Annavaram is quite a picturesque destination with the pampa river flowing languidly next to the hills</p>
+                 <a href="{% url 'annavaram' %}" class="card__button">Read More</a>
+              </div>
+           </article>
+  
+           <article class="card__article">
+              <img src="{% static 'images/rajamundry_destinations.jpg'%}" alt="image" class="card__img">
+              <div class="card__data">
+                 <h2 class="card__title">rajamundry</h2>
+                 <p>It is believed that the grammar and script of the telugu language evovled in Rajamundry</p>
+                 <button>Read More</button>
+              </div>
+           </article>
+  
+           <article class="card__article">
+              <img src="{% static 'images/draksharamam1_destinations.jpg'%}" alt="image" class="card__img">
+              <div class="card__data">
+                 <h2 class="card__title">Draksharamam</h2>
+                 <p>It is constructed by king Bhima of the Eastern Chalukyan,the temple is one of the Pancharama Kshetras</p>
+                 <button>Read More</button>
+              </div>
+           </article>
+  
+           <article class="card__article">
+              <img src="{% static 'images/dindi_destinations.jpeg'%}" alt="image" class="card__img">
+              <div class="card__data">
+                 <h2 class="card__title">Dindi</h2>
+                 <p>Dindi is famously known as the 'Coconut Country'of Konaseema.Undiscovered heaven for Nature lovers</p>
+                 <a href="{% url 'dindi' %}" class="card__button">Read More</a>
+              </div>
+           </article>
+  
+           <article class="card__article">
+              <img src="{% static 'images/maredumilli_destinations.jpg'%}" alt="image" class="card__img">
+              <div class="card__data">
+                 <h2 class="card__title">Maredumilli</h2>
+                 <p>Maredumilli Forests have rich bio-diversity and semi evergreen forests with undulating terrain</p>
+                 <button>Read More</button>
+              </div>
+           </article>
+  
+           <article class="card__article">
+              <img src="{% static 'images/godavaribridge_destinations.jpg'%}" alt="image" class="card__img">
+              <div class="card__data">
+                 <h2 class="card__title">Godavari  Bridge</h2>
+                 <p>The Godavari Bridge is a truss bridge and is India's third longest road-cum-rail bridge crossing a water body</p>
+                 <button>Read More</button>
+              </div>
+           </article>
+        </div>
+     </div>
+  <!--3rd-->
+  <h1 style="text-align: center; position: relative; top:0px; color: #222;">VISAKHAPATNAM</h1>
+  
+     <div class="container" style="position: relative; top:0px">
+        <div class="card__container">
+           <article class="card__article">
+              <img src="{% static 'images/bheemlibeach_destinations.jpg'%}" alt="image" class="card__img">
+              <div class="card__data">
+                 <h2 class="card__title">Bheemili  Beach</h2>
+                 <p>It is a sleepy fishing village near Vizag,these beaches are blessed with unending expanses of golden sand</p>
+                 <a href="{% url 'bheemili' %}" class="card__button">Read More</a>
+              </div>
+           </article>
+
+           <article class="card__article">
+            <img src="{% static 'images/lambasingi_destinations.jpg'%}" alt="image" class="card__img">
+            <div class="card__data">
+               <h2 class="card__title">Lambasingi</h2>
+               <p>Lambasingi is famous for its tea and coffee plantations along with little apple and strawberry farms</p>
+               <a href="{% url 'lambasingi' %}" class="card__button">Read More</a>
+            </div>
+         </article>
+  
+           <!-- <article class="card__article">
+              <img src="{% static 'images/submarine_destinations.jpg'%}" alt="image" class="card__img">
+              <div class="card__data">
+                 <h2 class="card__title">Submarine Museum</h2>
+                 <p>Witness the power beneath the surface. Visit the only submarine museum in South East Asia</p>
+                 <button>Read More</button>
+              </div>
+           </article> -->
+  
+           <article class="card__article">
+              <img src="{% static 'images/Araku_destinations.jpg'%}" alt="image" class="card__img">
+              <div class="card__data">
+                 <h2 class="card__title">Araku</h2>
+                 <p>A hill station surrounded by forests that are rich in biodiversity and home to tribals and coffee farms</p>
+                 <a href="{% url 'araku' %}" class="card__button">Read More</a>
+              </div>
+           </article>
+  
+           <article class="card__article">
+              <img src="{% static 'images/simhachalam_destinations.jpg'%}" alt="image" class="card__img">
+              <div class="card__data">
+                 <h2 class="card__title">Simhachalam</h2>
+                 <p>Ancient heritage temple located on a hilltop with unique architecture dedicated to Lord Narasimha</p>
+                 <a href="{% url 'simhachalam' %}" class="card__button">Read More</a>
+              </div>
+           </article>
+  
+           <!-- <article class="card__article">
+              <img src="{% static 'images/kailasagiri_destinations.jpg'%}" alt="image" class="card__img">
+              <div class="card__data">
+                 <h2 class="card__title">Kailasagiri Hill</h2>
+                 <p>Kailasagiri is a hilltop park in the city of Visakhapatnam in the Indian state of Andhra Pradesh</p>
+                 <button>Read More</button>
+              </div>
+           </article>
+  
+           <article class="card__article">
+              <img src="{% static 'images/rushikonda_destinations.jpg'%}" alt="image" class="card__img">
+              <div class="card__data">
+                 <h2 class="card__title">rushikonda beach</h2>
+                 <p>Rushikonda beach is widely known for its golden sands and tidy waves of Bay of Bengal</p>
+                 <a href="{% url 'rushikonda' %}" class="card__button">Read More</a>
+              </div>
+           </article>
+  
+           
+  
+           <article class="card__article">
+              <img src="{% static 'images/borracaves_destinations.jpg'%}" alt="image" class="card__img">
+              <div class="card__data">
+                 <h2 class="card__title">Borra Caves</h2>
+                 <p>See the huge million year old caves with stalactites and stalagmites considered to be one of India's deepest caves</p>
+                 <button>Read More</button>
+              </div>
+           </article> -->
+        </div>
+     </div>
+  <!--4rth-->
+  <h1 style="text-align: center; position: relative; top:0px; color: #222;">ANANTHAPUR</h1>
+  
+     <div class="container" style="position: relative; top:0px">
+        <div class="card__container">
+           <article class="card__article">
+              <img src="{% static 'images/lepakshi_destinations.webp'%}" alt="image" class="card__img">
+              <div class="card__data">
+                 <h2 class="card__title">lepakshi</h2>
+                 <p>Sri Veerabhadra temple,Famous for its age-old shrines.Lepakshi is steeped in mythological grandeur</p>
+                 <a href="{% url 'lepakshi' %}" class="card__button">Read More</a>
+              </div>
+           </article>
+  
+           <article class="card__article">
+              <img src="{% static 'images/gootyfort_destinations.jpg'%}" alt="image" class="card__img">
+              <div class="card__data">
+                 <h2 class="card__title">gooty fort</h2>
+                 <p>Gooty Fort is one of the oldest hill forts of AndhraPradesh.fort was made of granite rocks</p>
+                 <!-- <button>Read More</button> -->
+                 <a href="{% url 'gootyfort' %}" class="card__button">Read More</a>
+
+              </div>
+           </article>
+  
+           <article class="card__article">
+              <img src="{% static 'images/thimmamma_destinations.jpg'%}" alt="image" class="card__img">
+              <div class="card__data">
+                 <h2 class="card__title" style="font-size:17px;">Thimmamma marrimanu</h2>
+                 <p>The 600 years old Banyan Tree known as 'Thimmamma Marrimanu' located in Kadiri town </p>
+                 <a href="{% url 'thimmamma' %}" class="card__button">Read More</a>
+              </div>
+           </article>
+  
+           <article class="card__article">
+              <img src="{% static 'images/hemavati_destinations.webp'%}" alt="image" class="card__img">
+              <div class="card__data">
+                 <h2 class="card__title">Hemavathi temple</h2>
+                 <p>The historic village of Hemavathi is home to a remarkable group of temples built in the 8th-10th Centuries</p>
+                 <!-- <button>Read More</button> -->
+                 <a href="{% url 'hemavathi' %}" class="card__button">Read More</a>
+
+              </div>
+           </article>
+  
+           <!-- <article class="card__article">
+              <img src="{% static 'images/penukondafort_destinations.jpg'%}" alt="image" class="card__img">
+              <div class="card__data">
+                 <h2 class="card__title">Penukoda fort</h2>
+                 <p>It has several temples,famous ones being the temples of Lord Hanuman,Yoga Narasimhaswamy,Kashi Vishwanatha</p>
+                 <button>Read More</button>
+              </div>
+           </article>
+  
+           <article class="card__article">
+              <img src="{% static 'images/kadri lakshminarashimhaswamy_destinations.jpg'%}" alt="image" class="card__img">
+              <div class="card__data">
+                 <h2 class="card__title" style="font-size:16px;">Kadiri Lakshmi Narasimha Swamy Temple</h2>
+                 <p>If spirituality is a journey, Andhra Pradesh is the ideal place to find it.</p>
+                 <button>Read More</button>
+              </div>
+           </article>
+  
+           
+           <article class="card__article">
+              <img src="{% static 'images/bugga_destinations.jpg'%}" alt="image" class="card__img">
+              <div class="card__data">
+                 <h2 class="card__title" style="font-size:17.5px;">Bugga ramalingeswara swamy temple</h2>
+                 <p>Sri Bugga Ramalingeswara Swamy Temple was built by Ramalinga Nayudu</p>
+                 <button>Read More</button>
+              </div>
+           </article>
+  
+           <article class="card__article">
+              <img src="{% static 'images/chintala_destinations.jpg'%}" alt="image" class="card__img">
+              <div class="card__data">
+                 <h2 class="card__title" style="font-size:16.2px;">chintala venkataramana swamy temple</h2>
+                 <p>Chintala Venkataramana Swamy Temple is a famous temple located in Tadipatri town of Anantapur </p>
+                 <button>Read More</button>
+              </div>
+           </article> -->
+        </div>
+     </div>
+  <!--5th-->
+  <h1 style="text-align: center; position: relative; top:0px; color: #222;">GUNTUR</h1>
+  
+     <div class="container" style="position: relative; top:0px">
+        <div class="card__container">
+           <article class="card__article">
+              <img src="{% static 'images/undavalli_destinations.jpg'%}" alt="image" class="card__img">
+              <div class="card__data">
+                 <h2 class="card__title">undavalli caves</h2>
+                 <p>Undavalli Caves are the finest specimen of India's rock-cut architectural heritage,Guntur</p>
+                 <a href="{% url 'undavalli' %}" class="card__button">Read More</a>
+              </div>
+           </article>
+  
+           <article class="card__article">
+              <img src="{% static 'images/ettipothala_destinations.jpg'%}" alt="image" class="card__img">
+              <div class="card__data">
+                 <h2 class="card__title"style="font-size:18px;">Ettipothala waterfalls</h2>
+                 <p>It is a famous waterfall formed by the mountain streams which falls from a height of 70 feet</p>
+                 <a href="{% url 'ettipothala' %}" class="card__button">Read More</a>
+              </div>
+           </article>
+
+           <article class="card__article">
+            <img src="{% static 'images/mangalagiri_destinations.jpg'%}" alt="image" class="card__img">
+            <div class="card__data">
+               <h2 class="card__title" style="font-size:23px;">Mangalagiri</h2>
+               <p>Mangalagiri is a pilgrim centre. There is a temple on the hill dedicated to Lord Panakala Narasimha Swamy</p>
+               <!-- <button>Read More</button> -->
+               <a href="{% url 'mangalagiri' %}" class="card__button">Read More</a>
+
+            </div>
+            </article>
+  
+           
+
+           <article class="card__article">
+            <img src="{% static 'images/chebrole_destinations.jpg'%}" alt="image" class="card__img">
+            <div class="card__data">
+               <h2 class="card__title">chebrole</h2>
+               <p>The famous NageswaraSwamy Temple and Galigopuram were built by Devabhaktuni brothers Kanttanna and Murthanna</p>
+               <a href="{% url 'chebrole' %}" class="card__button">Read More</a>
+            </div>
+            </article>
+  
+           <!-- <article class="card__article">
+              <img src="{% static 'images/dhyanbuddha_destinations.jpg'%}" alt="image" class="card__img">
+              <div class="card__data">
+                 <h2 class="card__title" style="font-size:18.5px;">Dhyana Buddha statue</h2>
+                 <p>Dhyana Buddha is a statue of Gautama Buddha seated in a meditative posture located in Amaravathi</p>
+                 <button>Read More</button>
+              </div>
+            </article>
+  
+           <article class="card__article">
+              <img src="{% static 'images/pedakakani_destinations.jpg'%}" alt="image" class="card__img">
+              <div class="card__data">
+                 <h2 class="card__title">Pedakakani</h2>
+                 <p class="my-4"> The Malleswara Swamy Temple was first built by Sri Adi Shankaracharyaand and was later renovated by Sri Krishnadevaraya</p>
+                 <button>Read More</button>
+              </div>
+           </article>
+  
+           <article class="card__article">
+              <img src="{% static 'images/mahachaityaamvarati_destinations.jpg'%}" alt="image" class="card__img">
+              <div class="card__data">
+                 <h2 class="card__title">mahachaitya amaravathi</h2>
+                 <p>Amaravathi Mahachaitya is one of the popular tourist destinations in Amaravathi</p>
+                 <button>Read More</button>
+              </div>
+           </article>
+  
+           <article class="card__article">
+            <img src="{% static 'images/uppalapadu_destinations.jpg'%}" alt="image" class="card__img">
+            <div class="card__data">
+               <h2 class="card__title" style="font-size:16px;">uppalapadu bird sanctuary</h2>
+               <p>Uppalapadu is a place of bird migration and a village near Guntur</p>
+               <button>Read More</button>
+            </div>
+            </article> -->
+  
+           
+        </div>
+     </div>
+  </body>
+  </html>

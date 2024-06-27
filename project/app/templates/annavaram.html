@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<!-- codingmanish - www.codingmanish.in -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>annavaram</title>
+    {% load static%}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #f2f2f2;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 5;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            background: #fff;
+        }
+
+        .navbar {
+            display: flex;
+            padding: 0 10px;
+            max-width: 1200px;
+            width: 100%;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .navbar input#menu-toggler {
+            display: none;
+        }
+
+        .navbar #hamburger-btn {
+            cursor: pointer;
+            display: none;
+        }
+
+        .navbar .all-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .all-links li {
+            position: relative;
+            list-style: none;
+        }
+
+        .navbar .logo a {
+            display: flex;
+            align-items: center;
+            margin-left: 0;
+        }
+
+        header a {
+            margin-left: 40px;
+            text-decoration: none;
+            color: #222;
+            height: 100%;
+            padding: 20px 0;
+            display: inline-block;
+        }
+
+        header a:hover {
+            color: #38e016;
+        }
+
+        .homepage {
+            height: 100vh;
+            width: 100%;
+            position: relative;
+            background: url(dindi.jpg);
+            background-position: center 65%;
+            background-size: cover;
+        }
+
+        .homepage::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+
+        section {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            padding: 80px 0 0;
+        }
+
+        section h2 {
+            font-size: 2rem;
+        }
+
+        section > p {
+            text-align: center;
+        }
+
+        section .cards {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin-top: 50px;
+            padding: 0 10px;
+            justify-content: space-between;
+        }
+
+        section.about {
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+
+        .about .company-info {
+            margin-top: 30px;
+        }
+
+        .about h3 {
+            margin: 30px 0 10px;
+        }
+
+        .about .team {
+            text-align: left;
+            width: 100%;
+        }
+
+        .about .team ul {
+            padding-left: 20px;
+        }
+
+        section .cards .card {
+            background: #fff;
+            padding: 40px 15px;
+            list-style: none;
+            border-radius: 5px;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.04);
+            margin-bottom: 40px;
+            width: calc(100% / 3 - 30px);
+            text-align: center;
+        }
+
+        .portfolio .cards .card {
+            padding: 0 0 20px;
+        }
+
+        .portfolio .card img {
+            width: 100%;
+            padding-bottom: 10px;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            border-radius: 7px;
+        }
+
+        .cards .card p {
+            padding: 0 15px;
+            margin-top: 5px;
+            font-size: small;
+        }
+
+
+        @media screen and (max-width: 860px) {
+            .navbar .all-links {
+                position: fixed;
+                left: -100%;
+                width: 300px;
+                display: block;
+                height: 100vh;
+                top: 75px;
+                background: #fff;
+                transition: left 0.3s ease;
+            }
+
+            .navbar #menu-toggler:checked~.all-links {
+                left: 0;
+            }
+
+            .navbar .all-links li {
+                font-size: 18px;
+            }
+
+            .navbar #hamburger-btn {
+                display: block;
+            }
+
+            section > p {
+                text-align: center;
+            }
+
+            section .cards .card {
+                width: calc(100% / 2 - 15px);
+                margin-bottom: 30px;
+            }
+        }
+
+        @media screen and (max-width: 560px) {
+            section .cards .card {
+                width: 100%;
+                margin-bottom: 30px;
+            }
+        }
+
+        .image-container {
+            position: relative;
+            text-align: center;
+            color: white;
+        }
+
+        .image-container img {
+            width: 100%; 
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav class="navbar">
+        <h2 class="logo"><a href="#">Travel</a></h2>
+        <input type="checkbox" id="menu-toggler">
+        <label for="menu-toggler" id="hamburger-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="24px" height="24px">
+                <path d="M0 0h24v24H0z" fill="none"/>
+                <path d="M3 18h18v-2H3v2zm0-5h18V11H3v2zm0-7v2h18V6H3z"/>
+            </svg>
+        </label>
+        <ul class="all-links">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'destinations' %}">Destinations</a></li>
+            <li><a href="{% url 'categories' %}">Categories</a></li>
+            <li><a href="{% url 'gallerypage' %}">Gallery</a></li>
+            <li><a href="{% url 'contactus' %}">Contact Us</a></li>
+            <li style="margin-right: 20px;"></li>
+            <li ><select name="" id="dropdown1">
+                <option value="#">Bookings</option>
+                <option value="{% url 'hotelbooking' %}">Hotel 1</option>
+                <option value="{% url 'hotelbooking' %}">Hotel 2</option>
+            </select>
+            
+                </li>  
+            <a href="{% url 'login' %}"><i class="fa-solid fa-right-from-bracket" title="sign out"></i></a>
+        </ul>
+    </nav>
+</header>
+
+<section class="homepage" id="home">
+    <img src="{% static 'images/annavaram_gallery.jpg' %}" alt="Description of the image" style=" height: 100vh; width: 100%;">
+</section>
+<section class="portfolio" id="portfolio">
+    <h2>ANNAVARAM</h2>
+    <p>Detailed information about the place.</p>
+    <ul class="cards">
+        <li class="card">
+            <img src="https://content3.jdmagicbox.com/comp/east-godavari/h4/9999px883.x883.120428134039.k1h4/catalogue/sree-veera-venkata-satyanarayana-swamy-devasthanam-east-godavari-tourist-attraction-n1lx09fd2d.jpg" alt="img">
+            <h3>ABOUT</h3>
+            <p>Annavaram is quite a picturesque destination with the Pampa River flowing languidly next to the hills. Opposite the main shrine is the kalyana mandapam. Other shrines in the temple premises are dedicated to Vana Durga and Lord Rama. Initially, the temple was a mere shed built over the idol of Satya Narayana, which was found here in 1891.
+                <span class="moreText" style="display: none;">
+                    Over time it was constructed into the structure you see today. The main temple is in the shape of a chariot with four wheels.</span><a href="#" class="readMoreLink">Read more</a><a href="#" class="readLessLink" style="display: none;">Read less</a></p>
+        </li>
+       
+        <li class="card">
+            <img src="https://lh5.googleusercontent.com/proxy/t-tALA2rEb_8UMi2KtdzdGiN51humtkorn0OJCn1u6I4yQ23jNbbP2VM1cMvVRrBg38_P1oH9ucoDPWCMJ1A9fo3XJPbmeJHkS4aurcoNWBVkWug" alt="img">
+            <h3>HISTORY</h3>
+            <p>Unfortunately, the beauty and sanctity of the temple have been overshadowed by increasing commercialisation. There is already an option for a paid special darshana, but even in the sanctum of the main shrine, you are asked if you would like to pay to have a closer look at the deity.
+               <span class="moreText" style="display: none;">
+                Moreover, what makes Dindi worth discovering is the fact that still, it is quite unexplored by people. And the backwater canals, lagoons, and lakes of this region make Dindi all the more an interesting choice for the tourists. The ancient temple of the Sidhi Vinayaka is a gem of a place to visit here. Apart from that, the Jaganmohini Keshava Temple at Ryali would too fascinate you. It is basically a quiet village situated between Vashista and the Gautami tributaries of the Godavari river.</span><a href="#" class="readMoreLink">Read more</a><a href="#" class="readLessLink" style="display: none;">Read less</a></p>
+        </li>
+        <li class="card">
+            <img src="https://test1.latestly.com/wp-content/uploads/2023/04/20-1.jpg" alt="img">
+            <h3>DETAILED INFORMATION</h3>
+            <p>1. Devasthanam is running buses Uphill to Railway Station, Railway Station to Uphill frequently for every train.
+                2. Devasthanam Bus is running from Annavaram to Simhachalam every day from Uphill @ 7.30 A.M.            
+                3. Devasthanam Bus is running from Annavaram to Kotipalli every day from Uphill @ 6.00 A.M. and 12.00 P.M  </p>         
+                <span class="moreText" style="display: none;">
+               <p> Accommodation: 
+                Devastanam administration has taken all measures for the piligram's comfortable stay on the Ratnagiri. Visitors will be offered diffrent kinds of accomodation ranging from Normal rooms to A.C Suits in various choultries and guest houses on the hill.
+                For the convenience of the casual visitors devastanam provided lockers to keep their luggage . 
+                Advance reservation fecility is available for all accomodations except Prakash Sadan. Reservation will be done by paying one day rent + 50% of additional amount for the guest house of their choice.</p>
+                
+        <h4>How to reach</h4>
+        <p>Flight:Rajahmundry is the nearest airport</p>
+        <p>Train:There are regular trains from other major cities of the country to Annavaram. </p>   
+        <p>Buses:Annavaram is well connected to other major cities of the country via regular buses.</p>
+        <h4>Best time to visit</h4>
+        <p> 1. Sarva Darsanam: Free (6.00AM to 12.30PM 1.00PM to 9.00PM)
+            2. Seegra Darsanam: Rs.50/- (6.00AM to 12.30PM 1.00PM to 9.00PM)
+            3. Antaralaya Darsanam: Rs.100/- (6.00AM to 12.30PM 1.00PM to 9.00PM) </p>
+        </span><a href="#" class="readMoreLink">Read more</a><a href="#" class="readLessLink" style="display: none;">Read less</a></p>
+
+        </li>
+    </ul>
+</section>
+
+<div class="image-container">
+    <p><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15238.762488454757!2d82.39173029991198!3d17.282196276452304!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a39ce31342616a5%3A0xe9e0d3f2fed6b1fe!2sAnnavaram%2C%20Andhra%20Pradesh!5e0!3m2!1sen!2sin!4v1701237731178!5m2!1sen!2sin" width="800" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></p>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var moreTexts = document.querySelectorAll(".moreText");
+        var readMoreLinks = document.querySelectorAll(".readMoreLink");
+        var readLessLinks = document.querySelectorAll(".readLessLink");
+
+        readMoreLinks.forEach(function(readMoreLink, index) {
+            readMoreLink.addEventListener("click", function(event) {
+                event.preventDefault();
+                moreTexts[index].style.display = "inline"; // or "block" depending on your design
+                readMoreLinks[index].style.display = "none";
+                readLessLinks[index].style.display = "inline";
+            });
+        });
+
+        readLessLinks.forEach(function(readLessLink, index) {
+            readLessLink.addEventListener("click", function(event) {
+                event.preventDefault();
+                moreTexts[index].style.display = "none";
+                readMoreLinks[index].style.display = "inline";
+                readLessLinks[index].style.display = "none";
+            });
+        });
+    });
+
+    // js for hotel booking
+
+    function redirectToPage(dropdownId) {
+    var selectedOption = document.getElementById(dropdownId).value;
+    if (selectedOption !== "#") {
+      window.location.href = selectedOption;
+    }
+  }
+
+  document.getElementById("dropdown1").addEventListener("change", function() {
+    redirectToPage("dropdown1");
+  });
+</script>
+
+</body>
+</html>

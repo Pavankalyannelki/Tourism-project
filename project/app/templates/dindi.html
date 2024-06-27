@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<!-- codingmanish - www.codingmanish.in -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dindi</title>
+    {% load static%}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #f2f2f2;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 5;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            background: #fff;
+        }
+
+        .navbar {
+            display: flex;
+            padding: 0 10px;
+            max-width: 1200px;
+            width: 100%;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .navbar input#menu-toggler {
+            display: none;
+        }
+
+        .navbar #hamburger-btn {
+            cursor: pointer;
+            display: none;
+        }
+
+        .navbar .all-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .all-links li {
+            position: relative;
+            list-style: none;
+        }
+
+        .navbar .logo a {
+            display: flex;
+            align-items: center;
+            margin-left: 0;
+        }
+
+        header a {
+            margin-left: 40px;
+            text-decoration: none;
+            color: #222;
+            height: 100%;
+            padding: 20px 0;
+            display: inline-block;
+        }
+
+        header a:hover {
+            color: #38e016;
+        }
+
+        .homepage {
+            height: 100vh;
+            width: 100%;
+            position: relative;
+            background: url(dindi.jpg);
+            background-position: center 65%;
+            background-size: cover;
+        }
+
+        .homepage::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+
+        section {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            padding: 80px 0 0;
+        }
+
+        section h2 {
+            font-size: 2rem;
+        }
+
+        section > p {
+            text-align: center;
+        }
+
+        section .cards {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin-top: 50px;
+            padding: 0 10px;
+            justify-content: space-between;
+        }
+
+        section.about {
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+
+        .about .company-info {
+            margin-top: 30px;
+        }
+
+        .about h3 {
+            margin: 30px 0 10px;
+        }
+
+        .about .team {
+            text-align: left;
+            width: 100%;
+        }
+
+        .about .team ul {
+            padding-left: 20px;
+        }
+
+        section .cards .card {
+            background: #fff;
+            padding: 40px 15px;
+            list-style: none;
+            border-radius: 5px;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.04);
+            margin-bottom: 40px;
+            width: calc(100% / 3 - 30px);
+            text-align: center;
+        }
+
+        .portfolio .cards .card {
+            padding: 0 0 20px;
+        }
+
+        .portfolio .card img {
+            width: 100%;
+            padding-bottom: 10px;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            border-radius: 7px;
+        }
+
+        .cards .card p {
+            padding: 0 15px;
+            margin-top: 5px;
+            font-size: small;
+        }
+
+
+        @media screen and (max-width: 860px) {
+            .navbar .all-links {
+                position: fixed;
+                left: -100%;
+                width: 300px;
+                display: block;
+                height: 100vh;
+                top: 75px;
+                background: #fff;
+                transition: left 0.3s ease;
+            }
+
+            .navbar #menu-toggler:checked~.all-links {
+                left: 0;
+            }
+
+            .navbar .all-links li {
+                font-size: 18px;
+            }
+
+            .navbar #hamburger-btn {
+                display: block;
+            }
+
+            section > p {
+                text-align: center;
+            }
+
+            section .cards .card {
+                width: calc(100% / 2 - 15px);
+                margin-bottom: 30px;
+            }
+        }
+
+        @media screen and (max-width: 560px) {
+            section .cards .card {
+                width: 100%;
+                margin-bottom: 30px;
+            }
+        }
+
+        .image-container {
+            position: relative;
+            text-align: center;
+            color: white;
+        }
+
+        .image-container img {
+            width: 100%; 
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav class="navbar">
+        <h2 class="logo"><a href="#">Travel</a></h2>
+        <input type="checkbox" id="menu-toggler">
+        <label for="menu-toggler" id="hamburger-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="24px" height="24px">
+                <path d="M0 0h24v24H0z" fill="none"/>
+                <path d="M3 18h18v-2H3v2zm0-5h18V11H3v2zm0-7v2h18V6H3z"/>
+            </svg>
+        </label>
+        <ul class="all-links">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'destinations' %}">Destinations</a></li>
+            <li><a href="{% url 'categories' %}">Categories</a></li>
+            <li><a href="{% url 'gallerypage' %}">Gallery</a></li>
+            <li><a href="{% url 'contactus' %}">Contact Us</a></li>
+            <li style="margin-right: 20px;"></li>
+            <li ><select name="" id="dropdown1">
+                <option value="#">Bookings</option>
+                <option value="{% url 'hotelbooking' %}">Hotel 1</option>
+                <option value="{% url 'hotelbooking' %}">Hotel 2</option>
+            </select>
+            
+                </li> 
+            <a href="{% url 'login' %}"><i class="fa-solid fa-right-from-bracket" title="sign out"></i></a>
+        </ul>
+    </nav>
+</header>
+
+<section class="homepage" id="home">
+    <img src="{% static 'images/dindi.jpg' %}" alt="Description of the image" style=" height: 100vh; width: 100%;">
+</section>
+<section class="portfolio" id="portfolio">
+    <h2>DINDI</h2>
+    <p>Detailed information about the place.</p>
+    <ul class="cards">
+        <li class="card">
+            <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/eb/94/dc/palavelli-boutique-resorts.jpg?w=700&h=-1&s=1" alt="img">
+            <h3>ABOUT</h3>
+            <p>A beautiful village located on the banks of the second-longest Indian river, Godavari, Dindi is truly an exceptional place to explore. It is as if this travel getaway has a gripping power to take you away from the chaos of city life and breathe in a little peace in your being which feels absolutely refreshing.
+                <span class="moreText" style="display: none;">
+                    Moreover, what makes Dindi worth discovering is the fact that still, it is quite unexplored by people. And the backwater canals, lagoons, and lakes of this region make Dindi all the more an interesting choice for the tourists.</span><a href="#" class="readMoreLink">Read more</a><a href="#" class="readLessLink" style="display: none;">Read less</a></p>
+        </li>
+        <li class="card">
+            <img src="https://content.jdmagicbox.com/comp/hyderabad/q6/040pxx40.xx40.180129125501.s2q6/catalogue/dindi-resort-hyderabad-banquet-halls-uoe9i.jpg" alt="img">
+            <h3>OVERVIEW</h3>
+            <p>The Ancient Temple Of The Sidhi Vinayaka Is A Gem Of A Place To Visit Here. Apart From That, The Jaganmohini Keshava Temple At Ryali Would Too Fascinate You.
+                The Borra Caves Are Worth Visiting For Their Spectacular Stalactites And Stalagmites.<span class="moreText" style="display: none;"> The Area Also Has Several Coffee Plantations And Museums. The Three Hour Long Train Journey From Vizag To Araku Is Also Worth Considering The Train Passes Hills, Valley, Bridges, Waterfalls And Several Tunnels Before It Reaches The Araku Station. However, Even If You Book Your Tickets In Advance, The Train Compartments Can Get Quite Crowded, Especially During Weekends And Holidays.</span><a href="#" class="readMoreLink">Read more</a><a href="#" class="readLessLink" style="display: none;">Read less</a></p>
+        </li>
+        <li class="card">
+            <img src="https://r1imghtlak.ibcdn.com/355caa72d38311e99a9e0242ac110004.jpg?downsize=634:357" alt="img">
+            <h3>DETAILED INFORMATION</h3>
+            <h4>How to Reach</h4>
+            <p>flight:The nearest airport to to Dindi is Rajahmundry which is 80 KM away.</p>
+            <p>Train:There are regular trains from other major cities of the country to Tadipatri. </p>               
+            <p>Buses:Dindi is well connected to other major cities of the country via regular buses.</p>
+            <span class="moreText" style="display: none;">
+            <h4>Best time to visit</h4>
+            <p> Best time to visit Dindi is from October and February, as the weather conditions remain wonderful this time.</p>
+        </span><a href="#" class="readMoreLink">Read more</a><a href="#" class="readLessLink" style="display: none;">Read less</a></p>
+        </li>
+    </ul>
+</section>
+
+<div class="image-container">
+    <p><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3826.528670123159!2d81.78480147511574!3d16.44874707916622!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a37deb719067dbb%3A0xb50cd95a081080f6!2sDindi%2C%20Andhra%20Pradesh%20533253!5e0!3m2!1sen!2sin!4v1701237773407!5m2!1sen!2sin" width="800" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></p>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var moreTexts = document.querySelectorAll(".moreText");
+        var readMoreLinks = document.querySelectorAll(".readMoreLink");
+        var readLessLinks = document.querySelectorAll(".readLessLink");
+
+        readMoreLinks.forEach(function(readMoreLink, index) {
+            readMoreLink.addEventListener("click", function(event) {
+                event.preventDefault();
+                moreTexts[index].style.display = "inline"; // or "block" depending on your design
+                readMoreLinks[index].style.display = "none";
+                readLessLinks[index].style.display = "inline";
+            });
+        });
+
+        readLessLinks.forEach(function(readLessLink, index) {
+            readLessLink.addEventListener("click", function(event) {
+                event.preventDefault();
+                moreTexts[index].style.display = "none";
+                readMoreLinks[index].style.display = "inline";
+                readLessLinks[index].style.display = "none";
+            });
+        });
+    });
+    // js for hotel booking
+
+    function redirectToPage(dropdownId) {
+    var selectedOption = document.getElementById(dropdownId).value;
+    if (selectedOption !== "#") {
+      window.location.href = selectedOption;
+    }
+  }
+
+  document.getElementById("dropdown1").addEventListener("change", function() {
+    redirectToPage("dropdown1");
+  });
+</script>
+
+</body>
+</html>

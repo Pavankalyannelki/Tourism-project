@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <style>
+     
+      body {
+  font-family: Arial, sans-serif; 
+  margin: auto; 
+  height: 92vh;
+  padding: 20px; 
+  background-image: url(https://www.andrewshoemaker.com/images/xl/kickin-back-maui-palm-sunset.jpg); /* Sets the background image */
+  background-size: cover; 
+  background-position: center; 
+  background-color: transparent;
+  background-repeat: no-repeat; 
+}
+
+  
+.container {
+    width: 60%; 
+    max-width: 400px; 
+    background-color: transparent;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    margin: 60px auto;
+}
+     h2 {
+        text-align: center;
+      }
+      .btn {
+        width: 60%;
+        padding: 10px;
+        border: none;
+        border-radius: 10px;
+        background-color: transparent;
+        cursor: pointer;
+      }
+      .btn:hover {
+        background-color:black;
+        color: white;
+      }
+      form input{
+        
+        background-color: transparent;
+        border-radius: 5px;
+        border: 1.5px solid black;
+        width:50%;
+      }
+  </style>
+</head>
+<body>
+  <marquee behavior="" direction="right"><h1>WELCOME TO TOURISM SERVICES</h1></marquee>
+<div class="container">
+  <h2>Login</h2>
+ <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <p>Don't have an account? <a href="{% url 'signup'%}">Signup</a></p>
+    <button type="submit" class="btn">Log In</button>
+  </form>
+</div>
+</body>
+</html>
+
+
+
+

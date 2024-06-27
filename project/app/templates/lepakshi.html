@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<!-- codingmanish - www.codingmanish.in -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lepakshi</title>
+    {% load static%}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #f2f2f2;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 5;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            background: #fff;
+        }
+
+        .navbar {
+            display: flex;
+            padding: 0 10px;
+            max-width: 1200px;
+            width: 100%;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .navbar input#menu-toggler {
+            display: none;
+        }
+
+        .navbar #hamburger-btn {
+            cursor: pointer;
+            display: none;
+        }
+
+        .navbar .all-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .all-links li {
+            position: relative;
+            list-style: none;
+        }
+
+        .navbar .logo a {
+            display: flex;
+            align-items: center;
+            margin-left: 0;
+        }
+
+        header a {
+            margin-left: 40px;
+            text-decoration: none;
+            color: #222;
+            height: 100%;
+            padding: 20px 0;
+            display: inline-block;
+        }
+
+        header a:hover {
+            color: #38e016;
+        }
+
+        .homepage {
+            height: 100vh;
+            width: 100%;
+            position: relative;
+            
+            background-position: center 65%;
+            background-size: cover;
+        }
+
+        .homepage::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+
+        section {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            padding: 80px 0 0;
+        }
+
+        section h2 {
+            font-size: 2rem;
+        }
+
+        section > p {
+            text-align: center;
+        }
+
+        section .cards {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin-top: 50px;
+            padding: 0 10px;
+            justify-content: space-between;
+        }
+
+        section.about {
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+
+        .about .company-info {
+            margin-top: 30px;
+        }
+
+        .about h3 {
+            margin: 30px 0 10px;
+        }
+
+        .about .team {
+            text-align: left;
+            width: 100%;
+        }
+
+        .about .team ul {
+            padding-left: 20px;
+        }
+
+        section .cards .card {
+            background: #fff;
+            padding: 40px 15px;
+            list-style: none;
+            border-radius: 5px;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.04);
+            margin-bottom: 40px;
+            width: calc(100% / 3 - 30px);
+            text-align: center;
+        }
+
+        .portfolio .cards .card {
+            padding: 0 0 20px;
+        }
+
+        .portfolio .card img {
+            width: 100%;
+            padding-bottom: 10px;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            border-radius: 7px;
+        }
+
+        .cards .card p {
+            padding: 0 15px;
+            margin-top: 5px;
+            font-size: small;
+        }
+
+
+        @media screen and (max-width: 860px) {
+            .navbar .all-links {
+                position: fixed;
+                left: -100%;
+                width: 300px;
+                display: block;
+                height: 100vh;
+                top: 75px;
+                background: #fff;
+                transition: left 0.3s ease;
+            }
+
+            .navbar #menu-toggler:checked~.all-links {
+                left: 0;
+            }
+
+            .navbar .all-links li {
+                font-size: 18px;
+            }
+
+            .navbar #hamburger-btn {
+                display: block;
+            }
+
+            section > p {
+                text-align: center;
+            }
+
+            section .cards .card {
+                width: calc(100% / 2 - 15px);
+                margin-bottom: 30px;
+            }
+        }
+
+        @media screen and (max-width: 560px) {
+            section .cards .card {
+                width: 100%;
+                margin-bottom: 30px;
+            }
+        }
+
+        .image-container {
+            position: relative;
+            text-align: center;
+            color: white;
+        }
+
+        .image-container img {
+            width: 100%; 
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav class="navbar">
+        <h2 class="logo"><a href="#">Travel</a></h2>
+        <input type="checkbox" id="menu-toggler">
+        <label for="menu-toggler" id="hamburger-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="24px" height="24px">
+                <path d="M0 0h24v24H0z" fill="none"/>
+                <path d="M3 18h18v-2H3v2zm0-5h18V11H3v2zm0-7v2h18V6H3z"/>
+            </svg>
+        </label>
+        <ul class="all-links">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'destinations' %}">Destinations</a></li>
+            <li><a href="{% url 'categories' %}">Categories</a></li>
+            <li><a href="{% url 'gallerypage' %}">Gallery</a></li>
+            <li><a href="{% url 'contactus' %}">Contact Us</a></li>
+            <li style="margin-right: 20px;"></li>
+           <li ><select name="" id="dropdown1">
+            <option value="#">Bookings</option>
+            <option value="{% url 'hotelbooking' %}">Hotel 1</option>
+            <option value="{% url 'hotelbooking' %}">Hotel 2</option>
+        </select>
+        
+            </li> 
+            <a href="{% url 'login' %}"><i class="fa-solid fa-right-from-bracket" title="sign out"></i></a>
+        </ul>
+    </nav>
+</header>
+
+<section class="homepage" id="home">
+    <img src="{% static 'images/lepakshi-categories.jpg' %}" alt="Description of the image" style=" height: 100vh; width: 100%;">
+</section>
+<section class="portfolio" id="portfolio">
+    <h2>LEPAKSHI</h2>
+    <p>Detailed information about the place.</p>
+    <ul class="cards">
+        <li class="card">
+            <img src="https://static.toiimg.com/thumb/msid-51598992,width=1200,height=900/51598992.jpg" alt="img">
+            <h3>ABOUT</h3>
+           
+            <p>The presiding deity of the temple is Veerabhadra, a fearsome form of Shiva. According to Hindu mythology, Daksha insulted his daughter Sati and her husband Shiva at a grand sacrifice he had organised. Unable to bear the humiliation, Sati immolated herself.To avenge her form of the wrathful Veerabhadra. 
+                Apart from Veerabhadra, there are shrines dedicated to Papanasesvara,Raghunatha,Parvati,Ramalinga and Hanumalinga. <span class="moreText" style="display: none;">The temple complex is located on a low lying hill knowns as Kumarasailam, because it resembles a tortoise(kumara-tortoise,sailam-hill).The temple is enclosed by two walls and can be divided into three sections-the Natya Mandapa (dance pavilion) ; the Ardha Mandapa (foyer) and the sanctum and the Kalyana Mandapa (wedding hall).The ceilings of the Natya and Ardha Mandapa have several murals illustrating scenes from the Mahabharata, Ramayana and Puranas. One painting depicts Krishna as an infant suckling his toe, while the theme of another is the wedding of Parvati and Shiva (in his Sada Shiva form). Brahma is officiating the wedding, while Himavat, Vishnu and several sages give the couple their blessings.
+                The central portion of the roof has a mural of Lord Veerabhadra, Ranked by the builders of the temple Virupanna and Viranna. Measuring 23 ft 13 ft, it is probably the largest mural in Asia.</p>
+            </span><a href="#" class="readMoreLink">Read more</a><a href="#" class="readLessLink" style="display: none;">Read less</a></p>
+        </li>
+        <li class="card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLxtkviWY25UBxe3KgnpYE9I8t7BmcgjID4cZBU1JIaA&s" alt="img">
+            <h3>OVERVIEW</h3>
+          <p>There are also representations of at least 15 avatars of Shiva.
+            One of the major highlights of the temple is the Hanging Pillar,which seems like the 70 other pillars in the vicinity, but does not actually rest on the ground Local wide love to demonstrate its specialty by passing newspapers underneath it,leaving visitors awe struck. It is said that the pillar has been slightly dislodged from its original position,a defect attributed to a British engineer who tried to move it in an unsuccessful attempt to uncover the secret behind the architecture feat.<span class="moreText" style="display: none;">Another attraction of the temple is a giant footprint engraved in the stone. Believed to be Sita's, its big toe is perpetually filled with water.
+            The unfinished open-air Kalyana Mandapa is believed to be the venue of Shiva and Parvati's wedding.Folklore has it that the brothers, Virupanna and Veeranna were building the temple by embezzling funds from the treasury without the king's permission. When the emperor caught them, he ordered them to be blinded, after which they had to abandon its construction midway.There are rust-coloured stains on a wall outside the Kalyana Mandapam,which are believed to be the marks left behind by the blood shed from their eyes.To the south of the temple, there is a Nagalinga with a seven-hooded snake towering over it.Legend has it that the sculptors chiseled the snake to kill time while waiting for their mother to prepare lunch!There is also a sculpture of Ganesha and a snake, spider and elephant worshipping a linga.</p>
+            </span><a href="#" class="readMoreLink">Read more</a><a href="#" class="readLessLink" style="display: none;">Read less</a></p>
+        </li>
+        <li class="card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQT2-UuaGeXJJMaKgNm_5I1Z6XVnOhsejXPuvQ_hGKB-A&s " alt="img">
+            <h3>DETAILED INFORMATION</h3>
+          
+              
+                <p> Where To Stay:
+                The only place to stay in Lepakshi is APTDC's Haritha Hotel (Tel : 08556-240324, Cell : 09885757537 ; Tariff Rs.500-893). The property, located close to the veerabhadra Temple,has spacious and comfortable AC and non-AC rooms. Their restaurant serves simple Andhra meals.If the Haritha Hotel is booked out, you can stay at Hindupur,14km away from Lepakshi.Hotels here include palla Residency (Tel 224959, 228759 ; Tariff : Rs.1,000-2,451) on Railway Station road,</p> <span class="moreText" style="display: none;"> <p>Hotel JVS Paradise(Tel: 226777, 224888,Cell: 086882 24666; Tariff: Rs.1000-1680), near Balaji Circle).</p>  
+                
+                <h4>How to Reach</h4>
+                <p>flight:The closest airport near Lepakshi is in Bengaluru. </p>
+                <p>Train:Hindupur (14 Kms) is the nearest Train Station to Lepakhsi.  </p>
+                <p>Buses: Lepakshi is well connected by Hindupur and Bengaluru.</p>
+                <h4>Best time to visit</h4>
+                <p>Timings: 6.00 am - 6.00 pm</p>
+                <p>"One can pay a visit to the temple throughout the year". However, the best time is during the celebration of the festivals and lepakshi Utsavam.</p>
+            </span><a href="#" class="readMoreLink">Read more</a><a href="#" class="readLessLink" style="display: none;">Read less</a></p>
+        </li>
+    </ul>
+</section>
+
+<div class="image-container">
+    <p><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d18430.980804348797!2d77.59850195297611!3d13.800777774882112!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bb199cb3fc5ce25%3A0xe5910f72b4cd513f!2sLepakshi%20Temple%20Rd%2C%20Lepakshi%2C%20Andhra%20Pradesh%20515331!5e0!3m2!1sen!2sin!4v1701189916292!5m2!1sen!2sin" width="800" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> </p>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var moreTexts = document.querySelectorAll(".moreText");
+        var readMoreLinks = document.querySelectorAll(".readMoreLink");
+        var readLessLinks = document.querySelectorAll(".readLessLink");
+
+        readMoreLinks.forEach(function(readMoreLink, index) {
+            readMoreLink.addEventListener("click", function(event) {
+                event.preventDefault();
+                moreTexts[index].style.display = "inline"; // or "block" depending on your design
+                readMoreLinks[index].style.display = "none";
+                readLessLinks[index].style.display = "inline";
+            });
+        });
+
+        readLessLinks.forEach(function(readLessLink, index) {
+            readLessLink.addEventListener("click", function(event) {
+                event.preventDefault();
+                moreTexts[index].style.display = "none";
+                readMoreLinks[index].style.display = "inline";
+                readLessLinks[index].style.display = "none";
+            });
+        });
+    });
+
+
+
+    function redirectToPage(dropdownId) {
+    var selectedOption = document.getElementById(dropdownId).value;
+    if (selectedOption !== "#") {
+      window.location.href = selectedOption;
+    }
+  }
+
+  document.getElementById("dropdown1").addEventListener("change", function() {
+    redirectToPage("dropdown1");
+  });
+</script>
+</body>
+</html>

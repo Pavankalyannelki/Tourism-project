@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+     
+        body {
+    font-family: Arial, sans-serif; 
+    margin: auto; 
+    height: 92vh;
+    padding: 20px; 
+    background-image: url(https://www.andrewshoemaker.com/images/xl/kickin-back-maui-palm-sunset.jpg); /* Sets the background image */
+    background-size: cover; 
+    background-position: center; 
+    background-color: transparent;
+   /* Centers the background image horizontally and vertically */
+    background-repeat: no-repeat; 
+  }
+  
+    
+  .container {
+    width: 60%; /* Adjust width as needed */
+    max-width: 400px; /* Optional: Set maximum width */
+    background-color: transparent;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    margin: 60px auto; /* Center horizontally and lower the form */
+}
+       h2 {
+          text-align: center;
+        }
+        .btn {
+          width: 60%;
+          padding: 10px;
+          border: none;
+          border-radius: 10px;
+          background-color: transparent;
+          cursor: pointer;
+        }
+        .btn:hover {
+          background-color:rgb(39, 38, 38);
+          color: white;
+        }
+        form input{
+          background-color: transparent;
+          border-radius: 5px;
+          border: 1.5px solid black;
+          width:50%;
+          text-align: start;
+        }
+    </style>
+</head>
+<body>
+    <marquee behavior="" direction="right"><h1>WELCOME TO REGISTRATION FORM</h1></marquee>   
+<div class="container">
+        <h2>Sign Up</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <p>Already have an account? <a href="{% url 'login'%}">Login</a></p>
+
+    <button type="submit" class="btn">Sign Up</button>
+
+</form>
+</div>
+</body>
+</html>
+ 

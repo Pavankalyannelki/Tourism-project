@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookings</title>
+
+    <style>
+        body{
+            font-family: Arial, sans-serif; 
+            margin: auto; 
+            height: 40%;
+            /* padding: 20px;  */
+            background-image: url(https://digital.ihg.com/is/image/ihg/ihg-lp-refresh-hero-imea-gben-lvp-1440x617); /* Sets the background image */
+            background-size: cover; 
+            background-position: center; 
+            background-color: transparent;
+            /* background-repeat: no-repeat;  */
+            /* text-align:end; */
+        }
+        .booking{
+            width: 60%; 
+            max-width: 400px; 
+            background-color: transparent;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            margin: 60px auto;
+        }
+        h2 {
+        text-align: center;
+      }
+      .btn {
+        width: 40%;
+        padding: 10px;
+        border: none;
+        border-radius: 10px;
+        background-color: transparent;
+        cursor: pointer;
+      }
+      .btn:hover {
+        background-color:black;
+        color: white;
+      }
+      
+      form input{
+        
+        background-color: transparent;
+        border-radius: 5px;
+        border: 1.5px solid rgb(14, 12, 12);
+        width:50%;
+      }
+        
+        
+        /* booking status */
+        .slot {
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .single-sharing .reservation-status {
+    color: red;
+}
+
+.double-sharing .reservation-status {
+    color: green;
+}
+
+
+    </style>
+</head>
+<body>
+    <marquee behavior="" direction="right"><h1>WELCOME TO BOOKING PAGE </h1></marquee>
+    <div class="booking">
+        <h2>BOOK HERE</h2>
+    <form action="" method="post">
+        {%csrf_token%}
+        {{form.as_p}}
+        <input type="submit" name="" class="btn">
+        <h1>{{data}}</h1>
+    </form>
+    </div>
+
+
+    
+    {% for booking in Hotelbooking %}
+    <div class="booking-item {% if booking.Room_Type == 'Single Sharing' %}single-sharing{% else %}double-sharing{% endif %}">
+        <p>Name: {{ booking.name }}</p>
+        <p>Email: {{ booking.email }}</p>
+        <!-- Add other booking details -->
+        {% if booking.is_reserved %}
+            <p class="reservation-status reserved">Reserved</p>
+        {% else %}
+            <p class="reservation-status not-reserved">Not Reserved</p>
+        {% endif %}
+    </div>
+{% endfor %}
+
+
+</body>
+</html>

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head> 
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HOME</title>
+{% load static %}
+<!-- <link rel="stylesheet" type="text/css" href="{% static 'css/home.css'%}"> -->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+header{
+    z-index: 999;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 200px;
+    transition: 0.5s ease;
+}
+
+header .brand{
+color: white; 
+font-size: 1.5em;
+font-weight: 700;
+text-transform: uppercase;
+text-decoration: none;
+}
+
+header .navigation{
+position: relative; 
+}
+
+header .navigation .navigation-items a{
+position: relative;
+color: white;
+font-size: 1em;
+font-weight: 500;
+text-decoration: none;
+margin-left: 30px;
+transition: 0.3s ease;
+}
+
+header .navigation .navigation-items a:before{
+    content: '';
+    position: absolute;
+    background: #fff;
+    width:0px;
+    height: 3px;
+    bottom:0;
+    left:0;
+}
+
+header .navigation .navigation-items a:hover:before{
+    width:100%;
+}
+
+.home video{
+    z-index:000;
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height:100%;
+    object-fit: cover;
+    display: none; /* Hide all videos by default */
+}
+
+.home video.active {
+    display: block; /* Show the active video */
+}
+
+section{
+    padding: 100px 200px;
+}
+.home{
+    position: relative;
+    width:100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+   
+}
+.home:before{
+    z-index:777;
+    content: '';
+   
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top:0;
+    left:0;
+}
+.home .content{
+    z-index: 888;
+    color: white;
+    width:70%;
+    margin-top:50px;
+}
+
+.home .content h1{
+font-size: 2em;
+font-weight: 900;
+text-transform: uppercase;
+letter-spacing: 5px;
+line-height: 50px;
+margin-bottom: 40px;
+}
+
+.home .content p{
+    margin-bottom: 65px;
+
+}
+
+
+@media (max-width: 1040px){
+    header{
+        padding: 12px 20px;
+    }
+    
+    section{
+        padding: 100px 20px;
+    }
+    header .navigation{
+      display:none;
+    }
+
+    header .navigation.active{
+      position: fixed;
+      width: 100%;
+      height:100vh;
+      top:0;
+      left: 0;
+      display:flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba(255, 1, 1, 0.5);
+    }
+header .navigation .navigation-items a{
+  
+    color: #222;
+    font-size: 1.2em;
+    font-weight: 500;
+    margin:20px;
+}
+header .navigation .navigation-items a:before{
+    background: #222;
+    height:5px;
+}
+header .navigation.active .navigation-items{
+  
+  background: #222;
+  width: 600px;
+  max-width: 600px;;
+  margin:20px;
+  padding:40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 5px;
+  box-shadow: 0 5px 25px rgb(1 1 1 / 20%);
+}
+.menu-btn{
+    background: url(sunset.jpg)no-repeat;
+    background-size: 30px ;
+    background-position: center;
+    width:40px;
+    height:40px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.menu-btn.active{
+   z-index: 999;
+   
+   background-size: 25px;
+   background-position: center;
+   transition: 0.3s ease;
+ }
+}
+
+ 
+    .whatsapp-chat {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25d366;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    }
+
+    .whatsapp-logo {
+    width: 30px;
+    height: auto;
+    margin-right: 10px;
+    animation: whatsappAnimation 2s infinite alternate;
+    }
+
+    .whatsapp-button {
+    color: #fff;
+    font-weight: bold;
+    }
+    @keyframes whatsappAnimation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+    }
+
+</style>
+</head>
+<body>
+    <header>
+     <a href="#" class="brand">Travel</a>
+     <div class="menu-btn">
+
+     </div>
+        <div class="navigation">
+           <div class="navigation-items">
+                <a href="#">Home</a>
+                <a href="{% url 'destinations' %}">Destinations</a>
+                <a href="{% url 'categories' %}">Categories</a>
+                <a href="{% url 'gallerypage' %}">Gallery</a>
+                <a href="{% url 'contactus' %}">Contact Us</a>
+                <a href="{% url 'login' %}"><i class="fa-solid fa-right-from-bracket" title="sign out"></i></a>
+            </div>
+        </div>
+    </header>
+    <section class="home">
+        <video class="video-slide" src="{% static 'images/beach.mp4'%}" autoplay muted loop></video>
+        <video class="video-slide" src="{% static 'images/road.mp4'%}" autoplay muted loop></video>
+        <video class="video-slide" src="{% static 'images/mountain.mp4'%}" autoplay muted loop></video>
+        <video class="video-slide" src="{% static 'images/water.mp4'%}" autoplay muted loop></video>
+        <video class="video-slide" src="{% static 'images/nature1.mp4'%}" autoplay muted loop></video>
+        <div class="content">
+            <h1>Travelling</h1>
+            <p>Travelling is not merely a movement from one place to another; it is a journey of discovery, enlightenment, and self-exploration.</p>
+          
+        </div>
+    </section>
+
+
+
+
+    <!-- whatsapp -->
+    
+        <div class="whatsapp" onclick="openWhatsApp()">
+            <img src="https://image.shutterstock.com/image-vector/call-icon-whats-app-line-260nw-1051199624.jpg" alt="WhatsApp Logo" class="whatsapp-logo">
+            <div class="whatsapp-button" >Chat with us</div>
+        </div>
+   
+    
+
+<script>
+     const menuBtn= document.querySelector(".menu-btn");
+     const navigation= document.querySelector(".navigation");
+
+     menuBtn.addEventListener("click", () => {
+        menuBtn.classList.toggle("active");
+        navigation.classList.toggle("active");
+     });
+
+     const videos = document.querySelectorAll(".video-slide");
+     let currentVideoIndex = 0;
+
+     // Function to toggle active class on videos
+     function toggleActiveVideo() {
+        videos.forEach((video, index) => {
+            if (index === currentVideoIndex) {
+                video.classList.add("active");
+            } else {
+                video.classList.remove("active");
+            }
+        });
+     }
+
+     // Function to change to the next video
+     function changeVideo() {
+        currentVideoIndex++;
+        if (currentVideoIndex === videos.length) {
+            currentVideoIndex = 0; // Start over if reached the end
+        }
+        toggleActiveVideo();
+     }
+
+     // Automatically change video every 5 seconds
+     setInterval(changeVideo, 5000);
+
+     // Initial call to set the first video active
+     toggleActiveVideo();
+
+
+
+     function openWhatsApp() {
+    console.log("Button clicked!"); // Add this line to check if the function is triggered
+    // Replace the phone number and message with your own
+    var phoneNumber = '+919347615167';
+    var message = 'Hello! I have a question.';
+
+    var whatsappURL = 'https://api.whatsapp.com/send?phone=' + phoneNumber + '&text=' + encodeURIComponent(message);
+    window.open(whatsappURL,'_blank');
+}
+
+</script>
+</body>
+</html>

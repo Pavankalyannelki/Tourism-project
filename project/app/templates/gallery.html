@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Gallery page</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/gallery.css' %}">
+</head>
+<style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+
+    *{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    
+    }
+   
+    body{
+        font-family:"Poppins", sans-serif;
+    }
+    .container{
+        height:100%;
+        width:1400px;
+        margin-top:5rem;
+        margin: 175px auto;
+        columns:4; 
+        column-gap:22px;  
+    }
+
+    .box{
+        position: relative;
+        overflow: hidden;
+        
+    }
+
+    .box img:hover{
+        transform: scale(1.3);
+        transition: 0.3s ease;
+        
+    }
+
+    .container .box{
+        text-align: center;
+        width:100%;
+        margin-bottom: 20px;
+        break-inside: avoid;
+    }
+
+    .container .box img{
+        max-width: 100%;
+        border-radius: 15px;
+        
+    }
+    
+
+    .heading-line{
+        display:flex;
+        align-items:center;
+        justify-content: center;
+        
+    }
+
+    .title{
+        display:grid;
+        grid-template-columns: repeat(3, 1fr);
+        align-items: center;
+        column-gap: 1.4rem;
+        font-size:43px;
+        font-family: "Baskerville Old Face";
+        text-transform: uppercase;
+    }
+
+    .title::before, .title::after {
+        content: "";
+        height: 3px;
+        padding:0rem 1rem;
+        background-color: rgb(68, 20, 87);
+        display: block;
+    }
+    .subheading p{
+        display: flex;
+        font-size:30px;
+        font-family: "Comic Sans MS";
+        font-weight: bold;
+        align-items: center;
+        justify-content: center;
+        font-size:9.5px;
+    }
+
+    .gallery-content{
+        position:absolute;
+        left: 50%;
+        bottom: -8rem;
+        transform: translateX(-50%);
+        width:100%;
+        padding: 2rem 1rem;
+        transition: .3s;
+        text-align: center;
+        color:whitesmoke;
+        background-image: linear-gradient(to top,rgb(46, 25, 48),transparent);
+    }    
+
+    .gallery-content h4{
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+        font-weight: 800;
+        font-family:"Lisu Bosa", serif;
+    }
+
+    .gallery-content p{
+        font-size: 1rem;
+    
+    }
+
+    .box:hover .gallery-content{
+        bottom:0;
+        
+
+    }
+     
+    header{
+        z-index: 999;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 200px;
+        transition: 0.5s ease;
+        background-color: black;
+    }
+
+    header .brand{
+        color: white; 
+        font-size: 1.5em;
+        font-weight: 700;
+        text-transform: uppercase;
+        text-decoration: none;
+    }
+
+    header .navigation{
+        position: relative; 
+    }
+
+    header .navigation .navigation-items a{
+        position: relative;
+        color: white;
+        font-size: 1em;
+        font-weight: 500;
+        text-decoration: none;
+        margin-left: 30px;
+        transition: 0.3s ease;
+    }
+    header .navigation .navigation-items a:before{
+        content: '';
+        position: absolute;
+        background: #fff;
+        width:0px;
+        height: 3px;
+        bottom:0;
+        left:0;
+    }
+    
+    header .navigation .navigation-items a:hover:before{
+        width:100%;
+    }
+    
+    @media (max-width: 1040px){
+        header{
+           padding: 12px 20px;
+        }
+        
+        header .navigation{
+           display:none;
+        }
+    
+        header .navigation.active{
+           position: fixed;
+           width: 100%;
+           height:100vh;
+           top:0;
+           left: 0;
+           display:flex;
+           justify-content: center;
+           align-items: center;
+           background: rgba(255, 1, 1, 0.5);
+        }
+    header .navigation .navigation-items a{
+     
+        color: #222;
+        font-size: 1.2em;
+        font-weight: 500;
+        margin:20px;
+    }
+    header .navigation .navigation-items a:before{
+        background: #222;
+        height:5px;
+    }
+    header .navigation.active .navigation-items{
+     
+        background: #222;
+        width: 600px;
+        max-width: 600px;;
+        margin:20px;
+        padding:40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 5px;
+        box-shadow: 0 5px 25px rgb(1 1 1 / 20%);
+    }
+    .menu-btn{
+        color: white;
+        background-size: 30px ;
+        background-position: center;
+        width:40px;
+        height:40px;
+        cursor: pointer;
+        transition: 0.3s ease;
+    }
+    
+    .menu-btn.active{
+        z-index: 999;
+        
+        background-size: 25px;
+        background-position: center;
+        transition: 0.3s ease;
+    }
+    }
+    @media (max-width:1200px){
+        .container{
+            width:calc(100% - 40px);  
+            columns:3;  
+    
+        }
+    }
+    
+    @media (max-width:768px){
+        .container{
+            
+            columns:2;   
+        }
+    }
+    
+    
+    @media (max-width:768px){
+        .container{
+            
+            columns:1;   
+        }
+    
+    
+        .icon{
+            width:100%;
+            position:absolute;
+            top:0;
+            right:0;
+        
+            display:flex;
+            padding:20px 1.5%;
+        }
+    
+    
+    
+        .icon .logo{
+            width:23px;
+        
+            color:black;
+        }
+    }
+</style>
+<body>
+    <header>
+        <a href="#" class="brand">Travel</a>
+        <div class="menu-btn">
+     
+        </div>
+        <div class="navigation">
+           <div class="navigation-items">
+              <a href="{% url 'home' %}">Home</a>
+              <a href="{% url 'destinations' %}">Destinations</a>
+              <a href="{% url 'categories' %}">Categories</a>
+              <!--<a href="{% url 'gallerypage' %}">Gallery</a>-->
+              <a href="{% url 'contactus' %}">Contact Us</a>
+              <a href="#"><i class="fa-solid fa-right-from-bracket" title="sign out"></i></a>
+            </div>
+        </div>
+    </header>
+    <div class="heading-line">
+        <h1 class="title" style="text-align: center; position: relative; top:125px; color:rgb(68, 20, 87);">snapshots</h1>
+    </div>
+    <div class="subheading">
+        <p style="text-align: center; position: relative; top:125px; color:rgb(10, 73,2);">Explore the most beautiful places in the world</p>
+    </div>
+    
+    <div class="container"> 
+        <div class="box"><img src="{% static 'images/simhachalam.v_gallery.jpg' %}" alt=""> 
+            <div class="gallery-content">
+                <h4>Simhachalam</h4>
+                <p>Vishakapatnam</p>
+            </div>
+        </div>
+        <div class="box"><img src="{% static 'images/submarine_gallery.jpg' %}" alt="">
+            <div class="gallery-content">
+                <h4>Submarine Beach</h4>
+                <p>Vishakapatnam</p>
+            </div>
+        </div>
+        
+        <div class="box"><img src="{% static 'images/gandhi-hill.v_gallery.jpg' %}" alt="">
+            <div class="gallery-content">
+                <h4>Gandhi Hill</h4>
+                <p>Krishna</p>
+            </div>
+        </div>
+        
+       
+        <div class="box"><img src="{% static 'images/dindi._gallery.jpg' %}" alt="">
+            <div class="gallery-content">
+                <h4>Dindi</h4>
+                <p>East Godavari</p>
+            </div>
+        </div>
+        
+        <div class="box"><img src="{% static 'images/hemavati-temple_gallery.jpg' %}" alt="">
+            <div class="gallery-content">
+                <h4>Hemavati Temple</h4>
+                <p>Anantapur</p>
+            </div>
+        </div>
+        <div class="box"><img src="{% static 'images/borra-Caves_gallery.jpg' %}" alt="">
+            <div class="gallery-content">
+                <h4>Borra Caves</h4>
+                <p>Visakhapatnam</p>
+            </div>
+        </div>
+        <div class="box"><img src="{% static 'images/dindii.v_gallery.jpeg' %}" alt="">
+            <div class="gallery-content">
+                <h4>Dindi Lake</h4>
+                <p>East Godavari</p>
+            </div>
+        </div>
+        <div class="box"><img src="{% static 'images/coringa_gallery.jpg' %}" alt="">
+            <div class="gallery-content">
+                <h4>Coringa Wildlife Sanctuary</h4>
+                <p>East Godavari</p>
+            </div>
+        </div>
+        <div class="box"><img src="{% static 'images/bheemli-beach_gallery.jpg' %}" alt="">
+            <div class="gallery-content">
+                <h4>Bheemili Beach</h4>
+                <p>Visakhapatnam</p>
+            </div>
+        </div>
+        <div class="box"><img src="{% static 'images/ettipothala_gallery.jpg' %}" alt="">
+            <div class="gallery-content">
+                <h4>Ettipotala Waterfalls</h4>
+                <p>Guntur</p>
+            </div>
+        </div>
+        
+        <div class="box"><img src="{% static 'images/araku_gallery.jpeg' %}" alt="">
+            <div class="gallery-content">
+                <h4>Araku</h4>
+                <p>Visakhapatnam</p>
+            </div>
+        </div>
+        <div class="box"><img src="{% static 'images/draksharamam_gallery.jpg' %}" alt="">
+            <div class="gallery-content">
+                <h4>Draksharamam</h4>
+                <p>East Godavari</p>
+            </div>
+        </div>
+        <div class="box"><img src="{% static 'images/godavari_gallery.png' %}" alt="">
+            <div class="gallery-content">
+                <h4>Godavari Bridge</h4>
+                <p>East Godavari</p>
+            </div>
+        </div>
+        <div class="box"><img src="{% static 'images/bhavani-island_gallery.jpeg' %}" alt="">
+            <div class="gallery-content">
+                <h4>Bhavani Island</h4>
+                <p>Krishna</p>
+            </div>
+        </div>
+        <div class="box"><img src="{% static 'images/gooty-fort_gallery.jpg' %}" alt="">
+            <div class="gallery-content">
+                <h4>Gooty Fort</h4>
+                <p>Anantapur</p>
+            </div>
+        </div>
+        <div class="box"><img src="{% static 'images/kailasagiri-hills_gallery.jpg' %}" alt="">
+            <div class="gallery-content">
+                <h4>Kailasagiri Hills</h4>
+                <p>Vishakapatnam</p>
+            </div>
+        </div>
+        <div class="box"><img src="{% static 'images/kuchipudi-village_gallery.jpg' %}" alt="">
+            <div class="gallery-content">
+                <h4>Kuchipudi</h4>
+                <p>Krishna</p>
+            </div>
+        </div>
+        <div class="box"><img src="{% static 'images/kanakadurga-temple_gallery.jpg' %}" alt="">
+            <div class="gallery-content">
+                <h4>Kanaka Durga Temple</h4>
+                <p>Krishna</p>
+            </div>
+        </div>
+        <div class="box"><img src="{% static 'images/lambasingi_gallery.jpeg'%}" alt="">
+            <div class="gallery-content">
+                <h4>Lambasingi</h4>
+                <p>Vishakapatnam</p>
+            </div>
+        </div>
+        <div class="box"><img src="{% static 'images/mangalagiri.v_gallery.jpg'%}" alt="">
+            <div class="gallery-content">
+                <h4>Lakshmi Narasimhaswamy Temple,Mangalagiri</h4>
+                <p>Guntur</p>
+            </div>
+        </div>
+        <div class="box"><img src="{% static 'images/prakasam-barrage_gallery.jpg'%}" alt="">
+            <div class="gallery-content">
+                <h4>prakasam Barrage</h4>
+                <p>Krishna</p>
+            </div>
+        </div>
+        <div class="box"><img src="{% static 'images/dhyana buddha_gallery.jpg'%}" alt="">
+            <div class="gallery-content">
+                <h4>Dhyana Buddha Statue</h4>
+                <p>Guntur</p>
+            </div>
+        </div>
+        <div class="box"><img src="{% static 'images/penukonda fort_gallery.jpg'%}" alt="">
+            <div class="gallery-content">
+                <h4>Penukoda</h4>
+                <p>Anantapur</p>
+            </div>
+        </div>
+        <div class="box"><img src="{% static 'images/maredumilli waterfalls.v_gallery.jpg'%}" alt="">
+            <div class="gallery-content">
+                <h4>Maredumilli Water Falls</h4>
+                <p>East godavari</p>
+            </div>
+        </div>
+        <div class="box"><img src="{% static 'images/undavalli caves_gallery.jpg'%}" alt="">
+            <div class="gallery-content">
+                <h4>undavalli caves</h4>
+                <p>Guntur</p>
+            </div>
+        </div>
+        <div class="box"><img src="{% static 'images/Sri veerabadhraswamy temple.v_gallery.jpg'%}" alt="">
+            <div class="gallery-content">
+                <h4>Sri Veerabhadra Temple</h4>
+                <p>Anantapur</p>
+            </div>
+        </div>
+        <div class="box"><img src="{% static 'images/thimmamma-marimanu_gallery.jpg'%}" alt="">
+            <div class="gallery-content">
+                <h4>Thimmamma marrimanu</h4>
+                <p>Anantapur</p>
+            </div>
+        </div>
+        <div class="box"><img src="{% static 'images/tirupati.v_gallery.jpg'%}" alt="">
+            <div class="gallery-content">
+                <h4>Tirupati</h4>
+                <p>Chittoor</p>
+            </div>
+        </div>
+        <div class="box"><img src="{% static 'images/lepakshi_gallery.jpg'%}" alt="">
+            <div class="gallery-content">
+                <h4>Lepakshi</h4>
+                <p>Anantapur</p>
+            </div>
+        </div>
+        <div class="box"><img src="{% static 'images/uppalapadu bird_gallery.jpg'%}" alt="">
+            <div class="gallery-content">
+                <h4>Uppalapadu Bird Sanctuary</h4>
+                <p>Guntur</p>
+            </div>
+        </div>
+        <div class="box"><img src="{% static 'images/papikondalu.v_gallery.jpg'%}" alt="">
+            <div class="gallery-content">
+                <h4>papikondalu</h4>
+                <p>East Godavari</p>
+            </div>
+        </div>
+        <div class="box"><img src="{% static 'images/pedakakani_gallery.jpg'%}" alt="">
+            <div class="gallery-content">
+                <h4>Pedakakani</h4>
+                <p>Guntur</p>
+            </div>
+        </div>
+        <div class="box"><img src="{% static 'images/annavaram_gallery.jpg'%}" alt="">
+            <div class="gallery-content">
+                <h4>Annavaram</h4>
+                <p>East Godavari</p>
+            </div>
+        </div>
+        <div class="box"><img src="{% static 'images/bheemli_gallery.jpg'%}" alt="">
+            <div class="gallery-content">
+                <h4>Bheemili Beach</h4>
+                <p>Visakhapatnam</p>
+            </div>
+        
+    </div>
+    
+</body>
+</html>

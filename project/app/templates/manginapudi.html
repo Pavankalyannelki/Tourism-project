@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<!-- codingmanish - www.codingmanish.in -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>manginapudi beach</title>
+    {% load static%}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #f2f2f2;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 5;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            background: #fff;
+        }
+
+        .navbar {
+            display: flex;
+            padding: 0 10px;
+            max-width: 1200px;
+            width: 100%;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .navbar input#menu-toggler {
+            display: none;
+        }
+
+        .navbar #hamburger-btn {
+            cursor: pointer;
+            display: none;
+        }
+
+        .navbar .all-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .all-links li {
+            position: relative;
+            list-style: none;
+        }
+
+        .navbar .logo a {
+            display: flex;
+            align-items: center;
+            margin-left: 0;
+        }
+
+        header a {
+            margin-left: 40px;
+            text-decoration: none;
+            color: #222;
+            height: 100%;
+            padding: 20px 0;
+            display: inline-block;
+        }
+
+        header a:hover {
+            color: #38e016;
+        }
+
+        .homepage {
+            height: 100vh;
+            width: 100%;
+            position: relative;
+            background: url(dindi.jpg);
+            background-position: center 65%;
+            background-size: cover;
+        }
+
+        .homepage::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+
+        section {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            padding: 80px 0 0;
+        }
+
+        section h2 {
+            font-size: 2rem;
+        }
+
+        section > p {
+            text-align: center;
+        }
+
+        section .cards {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin-top: 50px;
+            padding: 0 10px;
+            justify-content: space-between;
+        }
+
+        section.about {
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+
+        .about .company-info {
+            margin-top: 30px;
+        }
+
+        .about h3 {
+            margin: 30px 0 10px;
+        }
+
+        .about .team {
+            text-align: left;
+            width: 100%;
+        }
+
+        .about .team ul {
+            padding-left: 20px;
+        }
+
+        section .cards .card {
+            background: #fff;
+            padding: 40px 15px;
+            list-style: none;
+            border-radius: 5px;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.04);
+            margin-bottom: 40px;
+            width: calc(100% / 3 - 30px);
+            text-align: center;
+        }
+
+        .portfolio .cards .card {
+            padding: 0 0 20px;
+        }
+
+        .portfolio .card img {
+            width: 100%;
+            padding-bottom: 10px;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            border-radius: 7px;
+        }
+
+        .cards .card p {
+            padding: 0 15px;
+            margin-top: 5px;
+            font-size: small;
+        }
+
+
+        @media screen and (max-width: 860px) {
+            .navbar .all-links {
+                position: fixed;
+                left: -100%;
+                width: 300px;
+                display: block;
+                height: 100vh;
+                top: 75px;
+                background: #fff;
+                transition: left 0.3s ease;
+            }
+
+            .navbar #menu-toggler:checked~.all-links {
+                left: 0;
+            }
+
+            .navbar .all-links li {
+                font-size: 18px;
+            }
+
+            .navbar #hamburger-btn {
+                display: block;
+            }
+
+            section > p {
+                text-align: center;
+            }
+
+            section .cards .card {
+                width: calc(100% / 2 - 15px);
+                margin-bottom: 30px;
+            }
+        }
+
+        @media screen and (max-width: 560px) {
+            section .cards .card {
+                width: 100%;
+                margin-bottom: 30px;
+            }
+        }
+
+        .image-container {
+            position: relative;
+            text-align: center;
+            color: white;
+        }
+
+        .image-container img {
+            width: 100%; 
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav class="navbar">
+        <h2 class="logo"><a href="#">Travel</a></h2>
+        <input type="checkbox" id="menu-toggler">
+        <label for="menu-toggler" id="hamburger-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="24px" height="24px">
+                <path d="M0 0h24v24H0z" fill="none"/>
+                <path d="M3 18h18v-2H3v2zm0-5h18V11H3v2zm0-7v2h18V6H3z"/>
+            </svg>
+        </label>
+        <ul class="all-links">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'destinations' %}">Destinations</a></li>
+            <li><a href="{% url 'categories' %}">Categories</a></li>
+            <li><a href="{% url 'gallerypage' %}">Gallery</a></li>
+            <li><a href="{% url 'contactus' %}">Contact Us</a></li>
+            <li style="margin-right: 20px;"></li>
+            <li ><select name="" id="dropdown1">
+                <option value="#">Bookings</option>
+                <option value="{% url 'hotelbooking' %}">Hotel 1</option>
+                <option value="{% url 'hotelbooking' %}">Hotel 2</option>
+            </select>
+            
+                </li> 
+            <a href="{% url 'login' %}"><i class="fa-solid fa-right-from-bracket" title="sign out"></i></a>
+        </ul>
+    </nav>
+</header>
+
+<section class="homepage" id="home">
+    <img src="{% static 'images/mtm_categories1.webp' %}" alt="Description of the image" style=" height: 100vh; width: 100%;">
+</section>
+<section class="portfolio" id="portfolio">
+    <h2>Bheemili Beach</h2>
+    <p>Detailed information about the place.</p>
+    <ul class="cards">
+        <li class="card">
+            <img src="https://img.traveltriangle.com/blog/wp-content/uploads/2023/08/Machilipatnam_Cover.jpg" alt="img">
+            <h3>ABOUT</h3>
+            <p>The ancient city of Bandar(which literally means port) used to be known by several other names.In the seventeenth century,it was called Masulipatnam, Masula and even Maesolia. It served as the settlement for European traders from the 14th to the 17th century CE and as a trading port for the British, Dutch and French.
+               <span class="moreText" style="display: none;">
+                Today,the town is known as Machilipatnam. It is the administrative headquarters of the Krishna district and remains one of the major trading centres on the Coromandel coast.
+            </span><a href="#" class="readMoreLink">Read more</a><a href="#" class="readLessLink" style="display: none;">Read less</a></p>
+        </li>
+        <li class="card">
+            <img src="https://media-cdn.tripadvisor.com/media/photo-m/1280/18/b8/af/6c/entrance-to-manginapudi.jpg" alt="img">
+            <h3>OVERVIEW</h3>
+            <p>The glorious Manginapudi Beach is located in a small village called Manginapudi in Krishna District, Andhra Pradesh. It lies within the coastal area, bordered by the beautiful Bay of Bengal on one side. The beach is about 15 kilometres from Machilipatnam City, which is a major holiday destination in the region<span class="moreText" style="display: none;">As for other nearby landmarks, Manginapudi Beach lies at a distance of 80 kilometres from Viajayawada, 82 kilometres from Eluru and 117 kilometres from Guntur. Visakhapatnam (Vizag), one of the most popular vacation spots in the state, is about 340 kilometres from this beach.</span><a href="#" class="readMoreLink">Read more</a><a href="#" class="readLessLink" style="display: none;">Read less</a></p>
+        </li>
+        <li class="card">
+            <img src="https://static.toiimg.com/thumb/msid-59284482,width-550,height-433/59284482.jpg" alt="img">
+            <h3>DETAILED INFORMATION</h3>
+            <p>When you drive to Machilipatnam Port, it might seem like you're heading towards the end of world.The buildings and busy roads give way to green fields and canals.You drive alongside the backwards of the Bay of Bengal, which are home to numerous fishing boats with fascinating names such Mister India and Padmalaxmi.</p><span class="moreText" style="display: none;">
+                <p> Another interesting aspect of these boats is that most of them fly both the Indian and Bangladesh flags.</p>
+            
+            <p>Once you reach the edge of the land, there is a gate to the seaport.However, this is only the dockyard and to reach the port, you have to take a boat ride which will cost you around Rs.50. You will have to wait to get on board the boat and it may not always be available. It will be worth the wait though as the boat ride offers spectacular views of the sea. The port, like many others,plays host to several industries.</p>  
+           
+            <h4>How to Reach</h4>
+           <p>Flight:Machilipatnam is not well connected to other major cities of the country via regular flights. The nearest airport is in Vijayawada at a distance of 52kms.</p>
+           
+           <p>Train:There is no regular trains to Machilipatnam from other major cities of the country. The nearest Railway station is at Tenali which is located at a distance of 51kms. </p>  
+           <p>Buses:The place is well connected by major cities as Hyderabad, Vijayawada etc.,</p>
+           <h4>Best time to visit</h4>
+           <p>Best time to visit the town is between the months of October and March.</p>
+            </span><a href="#" class="readMoreLink">Read more</a><a href="#" class="readLessLink" style="display: none;">Read less</a></p>
+        </li>
+    </ul>
+</section>
+
+<div class="image-container">
+    <p><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61306.74805986783!2d81.08951958289684!3d16.185869115287634!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a49e7bb8e2c3e69%3A0x7f88ffaeefbbd4b!2sMachilipatnam%2C%20Andhra%20Pradesh!5e0!3m2!1sen!2sin!4v1700890773202!5m2!1sen!2sin" width="800" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></p>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var moreTexts = document.querySelectorAll(".moreText");
+        var readMoreLinks = document.querySelectorAll(".readMoreLink");
+        var readLessLinks = document.querySelectorAll(".readLessLink");
+
+        readMoreLinks.forEach(function(readMoreLink, index) {
+            readMoreLink.addEventListener("click", function(event) {
+                event.preventDefault();
+                moreTexts[index].style.display = "inline"; // or "block" depending on your design
+                readMoreLinks[index].style.display = "none";
+                readLessLinks[index].style.display = "inline";
+            });
+        });
+
+        readLessLinks.forEach(function(readLessLink, index) {
+            readLessLink.addEventListener("click", function(event) {
+                event.preventDefault();
+                moreTexts[index].style.display = "none";
+                readMoreLinks[index].style.display = "inline";
+                readLessLinks[index].style.display = "none";
+            });
+        });
+    });
+
+    // js for hotel booking
+
+    function redirectToPage(dropdownId) {
+    var selectedOption = document.getElementById(dropdownId).value;
+    if (selectedOption !== "#") {
+      window.location.href = selectedOption;
+    }
+  }
+
+  document.getElementById("dropdown1").addEventListener("change", function() {
+    redirectToPage("dropdown1");
+  });
+</script>
+
+</body>
+</html>
